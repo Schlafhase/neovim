@@ -9,6 +9,16 @@ return {
 					enabled = true,
 					view = "notify",
 				},
+				status = {
+					lsp_progress = { event = "lsp", kind = "progress" },
+				},
+				-- routes = {
+				-- 	filter = {
+				-- 		event = "lsp",
+				-- 		kind = "progress",
+				-- 	},
+				-- 	opts = { skip = true },
+				-- },
 			})
 
 			-- LSP Hover scrolling

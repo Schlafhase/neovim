@@ -1,38 +1,102 @@
 return {
-  {
-    "lualine.nvim",
-    auto_enable = true,
-    -- cmd = { "" },
-    event = "DeferredUIEnter",
-    -- ft = "",
-    -- keys = "",
-    -- colorscheme = "",
-    after = function(plugin)
-      require("lualine").setup({
-        options = {
-          icons_enabled = false,
-          theme = nixInfo("onedark_dark", "settings", "colorscheme"),
-          component_separators = { left = "", right = "" },
-          section_separators = { left = "", right = "" },
-        },
-        sections = {
-          lualine_c = {
-            { "filename", path = 1, status = true },
-          },
-        },
-        inactive_sections = {
-          lualine_b = {
-            { "filename", path = 3, status = true },
-          },
-          lualine_x = { "filetype" },
-        },
-        tabline = {
-          lualine_a = { "buffers" },
-          -- if you use lualine-lsp-progress, I have mine here instead of fidget
-          -- lualine_b = { 'lsp_progress', },
-          lualine_z = { "tabs" },
-        },
-      })
-    end,
-  },
+	{
+		"lualine.nvim",
+		auto_enable = true,
+		-- cmd = { "" },
+		event = "DeferredUIEnter",
+		-- ft = "",
+		-- keys = "",
+		-- colorscheme = "",
+		after = function(plugin)
+			require("lualine").setup({
+				options = {
+					theme = "auto",
+					globalstatus = vim.o.laststatus == 3,
+					disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
+				},
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "branch" },
+
+					lualine_c = {
+						-- LazyVim.lualine.root_dir(),
+						-- {
+						-- 	"diagnostics",
+						-- 	symbols = {
+						-- 		error = icons.diagnostics.Error,
+						-- 		warn = icons.diagnostics.Warn,
+						-- 		info = icons.diagnostics.Info,
+						-- 		hint = icons.diagnostics.Hint,
+						-- 	},
+						-- },
+						-- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+						-- { LazyVim.lualine.pretty_path() },
+					},
+					lualine_x = {
+						{
+							function()
+								return require("noice").api.status.command.get()
+							end,
+							cond = function()
+								return package.loaded["noice"] and require("noice").api.status.command.has()
+							end,
+							-- color = function()
+							-- 	return { fg = Snacks.util.color("Statement") }
+							-- end,
+						},
+						{
+							function()
+								return require("noice").api.status.mode.get()
+							end,
+							cond = function()
+								return package.loaded["noice"] and require("noice").api.status.mode.has()
+							end,
+							-- color = function()
+							-- 	return { fg = Snacks.util.color("Constant") }
+							-- end,
+						},
+						{
+							function()
+								return "  " .. require("dap").status()
+							end,
+							cond = function()
+								return package.loaded["dap"] and require("dap").status() ~= ""
+							end,
+							-- color = function()
+							-- 	return { fg = Snacks.util.color("Debug") }
+							-- end,
+						},
+						{
+							"diff",
+							-- symbols = {
+							-- 	added = icons.git.added,
+							-- 	modified = icons.git.modified,
+							-- 	removed = icons.git.removed,
+							-- },
+							source = function()
+								local gitsigns = vim.b.gitsigns_status_dict
+								if gitsigns then
+									return {
+										added = gitsigns.added,
+										modified = gitsigns.changed,
+										removed = gitsigns.removed,
+									}
+								end
+							end,
+						},
+					},
+					lualine_y = {
+						{ "progress", separator = " ", padding = { left = 1, right = 0 } },
+						{ "location", padding = { left = 0, right = 1 } },
+					},
+					lualine_z = {
+						function()
+							return " " .. os.date("%R")
+						end,
+					},
+				},
+				-- extensions = { "neo-tree", "lazy", "fzf" },
+			})
+		end,
+	},
 }

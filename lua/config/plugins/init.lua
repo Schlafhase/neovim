@@ -6,7 +6,7 @@ return {
 	{ import = MP:relpath("colorschemes") },
 	{ import = MP:relpath("snacks") },
 	{ import = MP:relpath("treesitter") },
-	{ import = MP:relpath("which_key") },
+	{ import = MP:relpath("which-key") },
 	{ import = MP:relpath("blink") },
 	{ import = MP:relpath("cmp-cmdline") },
 	{ import = MP:relpath("conform") },
