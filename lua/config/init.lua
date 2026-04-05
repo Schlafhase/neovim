@@ -79,6 +79,24 @@ nixInfo.lze.register_handlers({
 			return plugin
 		end,
 	},
+	{
+		spec_field = "setup",
+		set_lazy = false,
+		modify = function(plugin)
+			if plugin.setup ~= nil then
+				local opts = plugin.setup
+				local mod = plugin.setup_module or plugin.name
+				local prev_after = plugin.after
+				plugin.after = function(p)
+					if prev_after then
+						prev_after(p)
+					end
+					require(mod).setup(opts)
+				end
+			end
+			return plugin
+		end,
+	},
 	-- From lzextras. This one makes it so that
 	-- you can set up lsps within lze specs,
 	-- and trigger lspconfig setup hooks only on the correct filetypes
@@ -104,7 +122,7 @@ end)
 
 -- NOTE: These 2 should be set up before any plugins with keybinds are loaded.
 vim.g.mapleader = " "
-vim.g.maplocalleader = " okji"
+vim.g.maplocalleader = " "
 
 -- [[ Disable auto comment on enter ]]
 -- See :help formatoptions
@@ -117,21 +135,6 @@ vim.g.maplocalleader = " okji"
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-	group = highlight_group,
-	pattern = "*",
-})
-
-vim.api.nvim_create_autocmd("LspProgress", {
-	pattern = "*",
-	callback = function()
-		vim.cmd("redrawstatus")
-	end,
-})
 
 vim.g.netrw_liststyle = 0
 vim.g.netrw_banner = 0
@@ -146,6 +149,7 @@ end
 
 require(MP:relpath("keymaps"))
 require(MP:relpath("options"))
+require(MP:relpath("autocmds"))
 
 nixInfo.lze.load({ import = MP:relpath("plugins") })
 nixInfo.lze.load({ import = MP:relpath("colorscheme") })

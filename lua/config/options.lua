@@ -5,6 +5,8 @@
 -- allow .nvim.lua in current dir and parents (project config)
 vim.o.exrc = false -- can be toggled off in that file to stop it from searching further
 
+vim.o.confirm = true
+
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
@@ -25,7 +27,7 @@ vim.opt.scrolloff = 10
 vim.wo.number = true
 
 -- Enable mouse mode
-vim.o.mouse = ""
+vim.o.mouse = "n"
 
 -- Indent
 -- vim.o.smarttab = true

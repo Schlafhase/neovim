@@ -18,17 +18,8 @@ string.relpath = function(str, sub, n)
 	return #result == 1 and result[1] or table.concat(result, ".")
 end
 
-if not table.pack then
-	table.pack = function(...)
-		return { n = select("#", ...), ... }
-	end
-end
-
 vim.g.start_time = vim.fn.reltime()
 
-vim.g.mapleader = "<Space>"
-vim.g.maplocalleader = "<Space>"
-vim.loader.enable()
 vim.o.exrc = true
 if vim.g.vscode == nil then
 	require("config")

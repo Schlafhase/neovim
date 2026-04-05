@@ -1,8 +1,9 @@
 return {
-  {
-    "mini.pairs",
-    after = function()
-      require('mini.pairs').setup()
-    end,
-  }
+	{
+		"mini.pairs",
+		event = "DeferredUIEnter",
+		after = function()
+			require("mini.pairs").setup()
+		end,
+	},
 }

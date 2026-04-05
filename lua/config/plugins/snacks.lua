@@ -78,7 +78,12 @@ return {
 								desc = "Recent Files",
 								action = ":lua Snacks.dashboard.pick('oldfiles')",
 							},
-							{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
+							{
+								icon = " ",
+								key = "s",
+								desc = "Restore Session",
+								action = ":lua require('persistence').load()",
+							},
 							{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 							{ desc = string.format("󰅒 Started in %dms", startup_ms), align = "center" },
 						},
@@ -97,6 +102,11 @@ return {
 			vim.keymap.set({ "n", "t" }, "<c-/>", function()
 				Snacks.terminal()
 			end, { desc = "Snacks Terminal" })
+
+			vim.keymap.set("n", "<leader>sk", Snacks.picker.keymaps)
+			Keymap("n", "<leader>bd", function()
+				Snacks.bufdelete()
+			end)
 		end,
 	},
 }
