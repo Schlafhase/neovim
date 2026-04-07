@@ -1,7 +1,7 @@
 return {
 	{
 		"moveline-nvim",
-		auto_enable = true,
+		event = "BufReadPre",
 		after = function(_)
 			local moveline = require("moveline")
 			vim.keymap.set({ "n", "i" }, "<M-k>", moveline.up)

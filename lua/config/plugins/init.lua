@@ -28,4 +28,5 @@ return {
 	{ import = MP:relpath("nvim-autopairs") },
 	{ import = MP:relpath("flash") },
 	{ import = MP:relpath("bufferline") },
+	{ import = MP:relpath("highlight-colors") },
 }

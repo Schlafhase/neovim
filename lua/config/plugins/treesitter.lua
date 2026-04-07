@@ -119,7 +119,6 @@ return {
 	},
 	{
 		"nvim-treesitter-context",
-		auto_enable = true,
 		event = "BufReadPost",
 		setup_module = "treesitter-context",
 		setup = { mode = "topline" },

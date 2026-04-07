@@ -20,8 +20,8 @@ return {
 				keymap = {
 					preset = "none",
 					-- ["<C-y>"] = { "select_and_accept" },
-					["<Tab>"] = { "select_next" },
-					["<S-Tab>"] = { "select_prev" },
+					["<Tab>"] = { "select_next", "fallback" },
+					["<S-Tab>"] = { "select_prev", "fallback" },
 					["<CR>"] = { "select_and_accept", "fallback" },
 				},
 				cmdline = {

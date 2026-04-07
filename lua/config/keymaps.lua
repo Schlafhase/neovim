@@ -66,8 +66,4 @@ Keymap(
 	{ noremap = true, silent = true, desc = "Paste over selection without erasing unnamed register" }
 )
 
-Keymap("n", "<S-TAB>", function()
-	require("telescope.builtin").buffers({ sort_mru = true, sort_lastused = true })
-end)
-
 Keymap("n", "<leader>n", "<cmd>Noice telescope<CR>", { desc = "Show Notifications" })

@@ -138,50 +138,69 @@ inputs:
         lazy = true;
         # here we chose a DAL of plugins, but we can also pass a single plugin, or null
         # plugins are of type wlib.types.stringable
-        data = with pkgs.vimPlugins; [
-          {
-            data = vim-sleuth;
-            # You can override defaults from the parent spec here
-            lazy = false;
-          }
-          snacks-nvim
-          nvim-lspconfig
-          nvim-surround
-          vim-startuptime
-          blink-cmp
-          blink-compat
-          cmp-cmdline
-          colorful-menu-nvim
-          lualine-nvim
-          gitsigns-nvim
-          which-key-nvim
-          fidget-nvim
-          nvim-lint
-          conform-nvim
-          nvim-treesitter-textobjects
-          # treesitter + grammars
-          nvim-treesitter.withAllGrammars
-          # This is for if you only want some of the grammars
-          # (nvim-treesitter.withPlugins (
-          #   plugins: with plugins; [
-          #     nix
-          #     lua
-          #   ]
-          # ))
-          vim-illuminate
-          mini-icons
-          trouble-nvim
-          telescope-nvim
-          nvim-notify
-          markview-nvim
-          moveline-nvim
-          persistence-nvim
-          rainbow-delimiters-nvim
-          nvim-autopairs
-          flash-nvim
-          nvim-treesitter-context
-          bufferline-nvim
-        ];
+        data =
+          let
+            rainbow-delimiters-nvim-newest = pkgs.vimUtils.buildVimPlugin {
+              name = "rainbow-delimiters-nvim";
+              src = pkgs.fetchFromGitHub {
+                owner = "HiPhish";
+                repo = "rainbow-delimiters.nvim";
+                rev = "b81d594e82b6ca1530797bdcfd16a1219250a2d8";
+                hash = "sha256-m+AhNezg0psQGSbkbsJdQybArWKLojzfF4hgLh3LzQA=";
+              };
+
+              nvimSkipModules = [
+                "rainbow-delimiters.types"
+                "rainbow-delimiters._test.highlight"
+              ];
+            };
+          in
+          with pkgs.vimPlugins;
+          [
+            {
+              data = vim-sleuth;
+              # You can override defaults from the parent spec here
+              lazy = false;
+            }
+            snacks-nvim
+            nvim-lspconfig
+            nvim-surround
+            vim-startuptime
+            blink-cmp
+            blink-compat
+            cmp-cmdline
+            colorful-menu-nvim
+            lualine-nvim
+            gitsigns-nvim
+            which-key-nvim
+            fidget-nvim
+            nvim-lint
+            conform-nvim
+            nvim-treesitter-textobjects
+            # treesitter + grammars
+            nvim-treesitter.withAllGrammars
+            # This is for if you only want some of the grammars
+            # (nvim-treesitter.withPlugins (
+            #   plugins: with plugins; [
+            #     nix
+            #     lua
+            #   ]
+            # ))
+            vim-illuminate
+            mini-icons
+            trouble-nvim
+            telescope-nvim
+            nvim-notify
+            markview-nvim
+            moveline-nvim
+            persistence-nvim
+            rainbow-delimiters-nvim-newest
+            nvim-autopairs
+            flash-nvim
+            nvim-treesitter-context
+            bufferline-nvim
+            nvim-highlight-colors
+          ];
       };
     };
     specMods =
