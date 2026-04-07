@@ -146,7 +146,7 @@ inputs:
                 owner = "HiPhish";
                 repo = "rainbow-delimiters.nvim";
                 rev = "b81d594e82b6ca1530797bdcfd16a1219250a2d8";
-                hash = "sha256-m+AhNezg0psQGSbkbsJdQybArWKLojzfF4hgLh3LzQA=";
+                hash = "sha256-q4cBvF8d5h+BM1LTm5aq02OBVmwSUb9rC1smHlxbRzg=";
               };
 
               nvimSkipModules = [
