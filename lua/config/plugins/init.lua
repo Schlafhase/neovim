@@ -30,4 +30,5 @@ return {
 	{ import = MP:relpath("flash") },
 	{ import = MP:relpath("bufferline") },
 	{ import = MP:relpath("highlight-colors") },
+	{ import = MP:relpath("todo-comments") },
 }

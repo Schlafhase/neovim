@@ -213,6 +213,7 @@ inputs: {
             nvim-highlight-colors
             nvim-web-devicons
             easy-dotnet-newest
+            todo-comments-nvim
           ];
       };
     };

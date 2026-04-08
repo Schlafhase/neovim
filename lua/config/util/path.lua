@@ -81,6 +81,7 @@ function M.lualine_root_dir(opts)
 	}
 end
 
+-- FIX: literally not showing anything (probably todo with highlighting)
 function M.lualine_pretty_path(opts)
 	opts = vim.tbl_extend("force", {
 		relative = "root",
