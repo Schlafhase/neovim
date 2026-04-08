@@ -1,6 +1,7 @@
 local MP = ...
 
 return {
+	{ "nvim-web-devicons" },
 	{ import = MP:relpath("lsp") },
 	{ import = MP:relpath("noice") },
 	{ import = MP:relpath("colorschemes") },

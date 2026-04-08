@@ -1,3 +1,5 @@
+local path = require("config.util.path")
+
 return {
 	{
 		"lualine.nvim",
@@ -19,18 +21,18 @@ return {
 					lualine_b = { "branch" },
 
 					lualine_c = {
-						-- LazyVim.lualine.root_dir(),
-						-- {
-						-- 	"diagnostics",
-						-- 	symbols = {
-						-- 		error = icons.diagnostics.Error,
-						-- 		warn = icons.diagnostics.Warn,
-						-- 		info = icons.diagnostics.Info,
-						-- 		hint = icons.diagnostics.Hint,
-						-- 	},
-						-- },
-						-- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-						-- { LazyVim.lualine.pretty_path() },
+						path.lualine_root_dir(),
+						{
+							"diagnostics",
+							symbols = {
+								error = " ",
+								warn = " ",
+								info = " ",
+								hint = " ",
+							},
+						},
+						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+						{ path.lualine_pretty_path() },
 					},
 					lualine_x = {
 						{
@@ -40,20 +42,9 @@ return {
 							cond = function()
 								return package.loaded["noice"] and require("noice").api.status.command.has()
 							end,
-							-- color = function()
-							-- 	return { fg = Snacks.util.color("Statement") }
-							-- end,
-						},
-						{
-							function()
-								return require("noice").api.status.mode.get()
+							color = function()
+								return { fg = Snacks.util.color("Statement") }
 							end,
-							cond = function()
-								return package.loaded["noice"] and require("noice").api.status.mode.has()
-							end,
-							-- color = function()
-							-- 	return { fg = Snacks.util.color("Constant") }
-							-- end,
 						},
 						{
 							function()
@@ -62,17 +53,17 @@ return {
 							cond = function()
 								return package.loaded["dap"] and require("dap").status() ~= ""
 							end,
-							-- color = function()
-							-- 	return { fg = Snacks.util.color("Debug") }
-							-- end,
+							color = function()
+								return { fg = Snacks.util.color("Debug") }
+							end,
 						},
 						{
 							"diff",
-							-- symbols = {
-							-- 	added = icons.git.added,
-							-- 	modified = icons.git.modified,
-							-- 	removed = icons.git.removed,
-							-- },
+							symbols = {
+								added = " ",
+								modified = " ",
+								removed = " ",
+							},
 							source = function()
 								local gitsigns = vim.b.gitsigns_status_dict
 								if gitsigns then
