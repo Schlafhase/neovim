@@ -58,17 +58,17 @@ return {
 					}
 
 					local bufname = vim.api.nvim_buf_get_name(bufnr)
+					open_buffers[bufname] = true
 
 					if opts.sort_lastused and (flag == "#" or flag == "%") then
-						local idx = ((buffers_and_files[1] ~= nil and buffers_and_files[1].flag == "%") and 2 or 1)
+						-- local idx = ((buffers_and_files[1] ~= nil and buffers_and_files[1].flag == "%") and 2 or 1)
+						local idx = ((flag == "%" or buffers_and_files[1] == nil) and 1 or 2)
 						table.insert(buffers_and_files, idx, element)
-						open_buffers[bufname] = true
 					else
 						if opts.select_current and flag == "%" then
 							default_selection_idx = i
 						end
 						table.insert(buffers_and_files, element)
-						open_buffers[bufname] = true
 					end
 				end
 
@@ -112,8 +112,25 @@ return {
 						previewer = conf.grep_previewer(opts),
 						sorter = conf.generic_sorter(opts),
 						default_selection_index = default_selection_idx,
-						attach_mappings = function(_, map)
+						attach_mappings = function(prompt_bufnr, map)
 							map({ "i", "n" }, "<M-d>", actions.delete_buffer)
+
+							local actions_state = require("telescope.actions.state")
+							local has_jumped = false
+
+							vim.api.nvim_buf_attach(prompt_bufnr, false, {
+								on_bytes = function()
+									if has_jumped then
+										return
+									end
+									local prompt = actions_state.get_current_picker(prompt_bufnr):_get_prompt()
+									if prompt ~= "" then
+										has_jumped = true
+										actions_state.get_current_picker(prompt_bufnr):set_selection(1)
+									end
+								end,
+							})
+
 							return true
 						end,
 					})

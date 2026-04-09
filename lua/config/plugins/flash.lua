@@ -5,8 +5,9 @@ return {
 		event = "BufReadPost",
 		after = function(_)
 			local flash = require("flash")
-			vim.keymap.set({ "n", "x", "o" }, "s", flash.jump)
-			vim.keymap.set({ "n", "x", "o" }, "S", flash.treesitter)
+			flash.toggle(true)
+			Keymap({ "n", "x", "o" }, "s", flash.jump)
+			Keymap({ "n", "x", "o" }, "S", flash.treesitter)
 		end,
 	},
 }

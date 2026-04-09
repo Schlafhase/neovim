@@ -31,4 +31,5 @@ return {
 	{ import = MP:relpath("bufferline") },
 	{ import = MP:relpath("highlight-colors") },
 	{ import = MP:relpath("todo-comments") },
+	{ import = MP:relpath("dropbar") },
 }

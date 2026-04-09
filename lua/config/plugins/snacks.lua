@@ -152,13 +152,19 @@ return {
 				Snacks.terminal()
 			end, { desc = "Snacks Terminal" })
 
-			vim.keymap.set("n", "<leader>sk", Snacks.picker.keymaps)
-			Keymap("n", "<leader>bd", function()
-				Snacks.bufdelete()
-			end)
+			-- 'Search' keymaps
+			Keymap("n", "<leader>sk", Snacks.picker.keymaps)
+			Keymap("n", "<leader>sc", Snacks.picker.colorschemes)
+			Keymap("n", "<leader>si", Snacks.picker.icons)
+			Keymap("n", "<leader>sa", Snacks.picker.autocmds)
+			Keymap("n", "<leader>sh", Snacks.picker.highlights)
 
 			Keymap("n", "<leader><leader>", function()
-				Snacks.picker.lsp_workspace_symbols()
+				Snacks.picker.grep()
+			end)
+
+			Keymap("n", "<leader>bd", function()
+				Snacks.bufdelete()
 			end)
 		end,
 	},

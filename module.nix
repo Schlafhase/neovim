@@ -214,6 +214,7 @@ inputs: {
             nvim-web-devicons
             easy-dotnet-newest
             todo-comments-nvim
+            dropbar-nvim
           ];
       };
     };
