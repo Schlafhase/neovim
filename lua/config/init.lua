@@ -42,6 +42,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 require(MP:relpath("lze-handlers"))
+require(MP:relpath("highlights"))
 require(MP:relpath("keymaps"))
 require(MP:relpath("options"))
 require(MP:relpath("autocmds"))

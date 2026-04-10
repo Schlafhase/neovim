@@ -44,10 +44,6 @@ return {
 				for i, bufnr in ipairs(bufnrs) do
 					local flag = bufnr == vim.fn.bufnr("") and "%" or (bufnr == vim.fn.bufnr("#") and "#" or " ")
 
-					if opts.sort_lastused and not opts.ignore_current_buffer and flag == "#" then
-						default_selection_idx = 2
-					end
-
 					local element = {
 						type = "buffer",
 						value = {
@@ -81,6 +77,12 @@ return {
 
 				local cwd = vim.fn.getcwd()
 				local files = vim.fn.systemlist('bash -c "find ' .. cwd .. " -type f -not -path '*/.*/*'; true\"")
+
+				-- if at least two entries exist and one of them is the current buffer
+				if #files ~= 0 and #buffers_and_files ~= 0 or #buffers_and_files >= 2 then
+					default_selection_idx = 2
+				end
+
 				for _, f in ipairs(files) do
 					if not open_buffers[f] then
 						local element = {
@@ -116,18 +118,11 @@ return {
 							map({ "i", "n" }, "<M-d>", actions.delete_buffer)
 
 							local actions_state = require("telescope.actions.state")
-							local has_jumped = false
 
-							vim.api.nvim_buf_attach(prompt_bufnr, false, {
-								on_bytes = function()
-									if has_jumped then
-										return
-									end
-									local prompt = actions_state.get_current_picker(prompt_bufnr):_get_prompt()
-									if prompt ~= "" then
-										has_jumped = true
-										actions_state.get_current_picker(prompt_bufnr):set_selection(1)
-									end
+							Autocmd("TextChangedI", {
+								buffer = prompt_bufnr,
+								callback = function()
+									actions_state.get_current_picker(prompt_bufnr).default_selection_index = 1
 								end,
 							})
 

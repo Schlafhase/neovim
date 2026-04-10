@@ -153,11 +153,11 @@ return {
 			end, { desc = "Snacks Terminal" })
 
 			-- 'Search' keymaps
-			Keymap("n", "<leader>sk", Snacks.picker.keymaps)
-			Keymap("n", "<leader>sc", Snacks.picker.colorschemes)
-			Keymap("n", "<leader>si", Snacks.picker.icons)
-			Keymap("n", "<leader>sa", Snacks.picker.autocmds)
-			Keymap("n", "<leader>sh", Snacks.picker.highlights)
+			Keymap("n", "<leader>sk", Snacks.picker.keymaps, { desc = "Search Keymaps" })
+			Keymap("n", "<leader>sc", Snacks.picker.colorschemes, { desc = "Search Colorschemes" })
+			Keymap("n", "<leader>si", Snacks.picker.icons, { desc = "Search Icons" })
+			Keymap("n", "<leader>sa", Snacks.picker.autocmds, { desc = "Search Autocmds" })
+			Keymap("n", "<leader>sh", Snacks.picker.highlights, { desc = "Search Highlight Groups" })
 
 			Keymap("n", "<leader><leader>", function()
 				Snacks.picker.grep()

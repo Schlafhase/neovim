@@ -81,16 +81,46 @@ function M.lualine_root_dir(opts)
 	}
 end
 
--- FIX: literally not showing anything (probably todo with highlighting)
+local function format_hl(self, text, hl_group)
+	if not hl_group or hl_group == "" then
+		return text
+	end
+
+	self.hl_cache = self.hl_cache or {}
+	local lualine_hl = self.hl_cache[hl_group]
+
+	if not lualine_hl then
+		local utils = require("lualine.utils.utils")
+
+		local gui_parts = {}
+		if utils.extract_highlight_colors(hl_group, "bold") then
+			table.insert(gui_parts, "bold")
+		end
+		if utils.extract_highlight_colors(hl_group, "italic") then
+			table.insert(gui_parts, "italic")
+		end
+
+		lualine_hl = self:create_hl({
+			fg = utils.extract_highlight_colors(hl_group, "fg"),
+			gui = table.concat(gui_parts, ","),
+		}, "LV_" .. hl_group)
+
+		self.hl_cache[hl_group] = lualine_hl
+	end
+
+	return self:format_hl(lualine_hl) .. text .. self:get_default_hl()
+end
+
 function M.lualine_pretty_path(opts)
+	-- PERF: only works with moonfly at the moment
 	opts = vim.tbl_extend("force", {
 		relative = "root",
-		modified_hl = "MatchParen",
-		dir_hl = "",
-		file_hl = "Bold",
+		modified_hl = "MoonflyOrange",
+		dir_hl = "MoonflyGrey70",
+		file_hl = "MoonflyGrey89",
 	}, opts or {})
 
-	return function()
+	return function(self)
 		local path = vim.api.nvim_buf_get_name(0)
 		if path == "" then
 			return ""
@@ -125,14 +155,13 @@ function M.lualine_pretty_path(opts)
 		end
 
 		local modified = vim.bo.modified
-		local file_hl = modified and Snacks.util.color(opts.modified_hl) or opts.file_hl
-		local dir_hl = Snacks.util.color(opts.dir_hl)
+		local file_hl = modified and opts.modified_hl or opts.file_hl
 
 		local result = ""
 		if dirs ~= "" then
-			result = "%#" .. dir_hl .. "#" .. dirs .. "/%#" .. file_hl .. "#" .. filename
+			result = format_hl(self, dirs .. "/", opts.dir_hl) .. format_hl(self, filename, file_hl)
 		else
-			result = "%#" .. file_hl .. "#" .. filename
+			result = format_hl(self, filename, file_hl)
 		end
 
 		return result

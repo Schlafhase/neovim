@@ -6,19 +6,12 @@ return {
 		after = function()
 			require("noice").setup({
 				notify = {
-					enabled = true,
+					enabled = false,
 					view = "notify",
 				},
 				status = {
 					lsp_progress = { event = "lsp", kind = "progress" },
 				},
-				-- routes = {
-				-- 	filter = {
-				-- 		event = "lsp",
-				-- 		kind = "progress",
-				-- 	},
-				-- 	opts = { skip = true },
-				-- },
 			})
 
 			-- LSP Hover scrolling

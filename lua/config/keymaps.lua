@@ -66,4 +66,4 @@ Keymap(
 	{ noremap = true, silent = true, desc = "Paste over selection without erasing unnamed register" }
 )
 
-Keymap("n", "<leader>n", "<cmd>Noice telescope<CR>", { desc = "Show Notifications" })
+Keymap("n", "<leader>n", "<cmd>Telescope notify<CR>", { desc = "Show Notifications" })
