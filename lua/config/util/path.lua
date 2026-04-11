@@ -109,7 +109,7 @@ local function format_hl(self, text, hl_group)
 end
 
 function M.lualine_pretty_path(opts)
-	-- PERF: only works with moonfly at the moment
+	-- NOTE: only works with moonfly at the moment
 	opts = vim.tbl_extend("force", {
 		relative = "root",
 		modified_hl = "MoonflyOrange",

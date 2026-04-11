@@ -159,6 +159,11 @@ return {
 			Keymap("n", "<leader>si", Snacks.picker.icons, { desc = "Search Icons" })
 			Keymap("n", "<leader>sa", Snacks.picker.autocmds, { desc = "Search Autocmds" })
 			Keymap("n", "<leader>sh", Snacks.picker.highlights, { desc = "Search Highlight Groups" })
+			---@diagnostic disable: undefined-field
+			if Snacks.picker.todo_comments ~= nil then
+				Keymap("n", "<leader>st", Snacks.picker.todo_comments, { desc = "Search Todos" })
+			end
+			---@diagnostic enable: undefined-field
 
 			Keymap("n", "<leader><leader>", function()
 				Snacks.picker.grep()
