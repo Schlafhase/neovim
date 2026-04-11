@@ -145,10 +145,10 @@ return {
 				}
 			)
 			-- NOTE: we aren't loading this lazily, and the keybinds already are so it is fine to just set these here
-			vim.keymap.set("n", "<leader>e", function()
+			Keymap("n", "<leader>e", function()
 				Snacks.explorer.open()
 			end, { desc = "Snacks file explorer" })
-			vim.keymap.set({ "n", "t" }, "<c-/>", function()
+			Keymap({ "n", "t" }, "<c-/>", function()
 				Snacks.terminal()
 			end, { desc = "Snacks Terminal" })
 
@@ -165,6 +165,11 @@ return {
 
 			Keymap("n", "<leader>bd", function()
 				Snacks.bufdelete()
+			end)
+
+			local root = require("config.util.path").get_root()
+			vim.schedule(function()
+				vim.cmd.cd(root)
 			end)
 		end,
 	},

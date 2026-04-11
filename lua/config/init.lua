@@ -47,8 +47,5 @@ require(MP:relpath("keymaps"))
 require(MP:relpath("options"))
 require(MP:relpath("autocmds"))
 
-local root = require("config.util.path").get_root()
-vim.cmd.cd(root)
-
-nixInfo.lze.load({ import = MP:relpath("plugins") })
 nixInfo.lze.load({ import = MP:relpath("colorscheme") })
+nixInfo.lze.load({ import = MP:relpath("plugins") })

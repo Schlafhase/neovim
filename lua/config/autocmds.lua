@@ -32,3 +32,29 @@ Autocmd("BufReadPost", {
 		end
 	end,
 })
+
+local last_root = vim.fn.getcwd()
+
+Autocmd({ "BufEnter", "LspAttach" }, {
+	group = Augroup("root-changed-detect"),
+	callback = function()
+		vim.schedule(function()
+			local root = require("config.util.path").get_root()
+			if root ~= last_root then
+				last_root = root
+				vim.api.nvim_exec_autocmds("User", {
+					pattern = "RootChanged",
+					data = { root = root },
+				})
+			end
+		end)
+	end,
+})
+
+Autocmd("User", {
+	pattern = "RootChanged",
+	group = Augroup("change-to-root-dir"),
+	callback = function(ev)
+		vim.cmd.cd(ev.data.root)
+	end,
+})

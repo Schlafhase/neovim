@@ -2,8 +2,6 @@ local M = {}
 
 local root_cache = {}
 
--- local highlight = require("lualine.highlight")
-
 function M.lsp_root(buf)
 	local clients = vim.lsp.get_clients({ bufnr = buf })
 	for _, client in ipairs(clients) do
