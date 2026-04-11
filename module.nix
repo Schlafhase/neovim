@@ -64,7 +64,6 @@ inputs: {
       nix = {
         data = null;
         extraPackages = with pkgs; [
-          nixd
           alejandra
         ];
       };
@@ -118,6 +117,7 @@ inputs: {
         ];
         extraPackages = with pkgs.haskellPackages; [
           haskell-language-server
+          ghc
         ];
       };
       general = {
