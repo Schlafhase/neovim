@@ -32,4 +32,5 @@ return {
 	{ import = MP:relpath("highlight-colors") },
 	{ import = MP:relpath("todo-comments") },
 	{ import = MP:relpath("dropbar") },
+	{ import = MP:relpath("image") },
 }

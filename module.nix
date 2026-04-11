@@ -166,6 +166,20 @@ inputs: {
               "easy-dotnet.roslyn.root_finder"
             ];
           };
+
+          image = pkgs.vimUtils.buildVimPlugin {
+            name = "image.nvim";
+            src = pkgs.fetchFromGitHub {
+              owner = "3rd";
+              repo = "image.nvim";
+              rev = "da2be65c153ba15a14a342b05591652a6df70d58";
+              hash = "sha256-brDtVYD3O+7N2RdQPIx2+6P+faXafoJDUITy0z0cIuA=";
+            };
+
+            nvimSkipModules = [
+              "minimal-setup"
+            ];
+          };
         in
           with pkgs.vimPlugins; [
             {
@@ -215,6 +229,7 @@ inputs: {
             easy-dotnet-newest
             todo-comments-nvim
             dropbar-nvim
+            image
           ];
       };
     };
