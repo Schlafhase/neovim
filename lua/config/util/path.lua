@@ -35,7 +35,7 @@ function M.get_root()
 		return root_cache[buf]
 	end
 
-	local root = M.lsp_root(buf) or pattern_root(buf, { ".git", ".sln", ".csproj", ".fsproj" }) or vim.uv.cwd()
+	local root = M.lsp_root(buf) or pattern_root(buf, { ".git", ".sln", ".slnx", ".csproj", ".fsproj" }) or vim.uv.cwd()
 
 	root = vim.fn.fnamemodify(root, ":p"):gsub("/$", "")
 	root_cache[buf] = root
