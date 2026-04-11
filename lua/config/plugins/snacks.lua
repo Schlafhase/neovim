@@ -142,6 +142,7 @@ return {
 							-- { section = "terminal", gap = 1, padding = 1, height = 15, cmd = "asciiquarium -t" }
 						},
 					},
+					image = {},
 				}
 			)
 			-- NOTE: we aren't loading this lazily, and the keybinds already are so it is fine to just set these here

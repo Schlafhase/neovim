@@ -12,10 +12,9 @@ return {
 					lsp_format = "fallback",
 				},
 				formatters_by_ft = {
-					-- NOTE: download some formatters
-					-- and configure them here
 					lua = nixInfo(nil, "settings", "cats", "lua") and { "stylua" } or nil,
 					cs = { "csharpier" },
+					nix = { "alejandra" },
 					-- go = { "gofmt", "golint" },
 					-- templ = { "templ" },
 					-- Conform will run multiple formatters sequentially
