@@ -8,6 +8,7 @@ return {
 				notify = {
 					enabled = false,
 					view = "notify",
+					merge = false,
 				},
 				status = {
 					lsp_progress = { event = "lsp", kind = "progress" },

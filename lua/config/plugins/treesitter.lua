@@ -21,7 +21,9 @@ return {
 				vim.o.foldlevel = 99
 
 				-- enables treesitter based indentation
-				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				if vim.treesitter.query.get(language, "indents") ~= nil then
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end
 
 				return true
 			end

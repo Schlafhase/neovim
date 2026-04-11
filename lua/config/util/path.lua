@@ -75,7 +75,6 @@ function M.lualine_root_dir(opts)
 			return opts.cwd or root ~= cwd
 		end,
 		padding = { left = 1, right = 0 },
-		separator = "",
 	}
 end
 

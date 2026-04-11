@@ -37,6 +37,18 @@ return {
 					lualine_x = {
 						{
 							function()
+								local reg = vim.fn.reg_recording()
+								return "recording @" .. reg
+							end,
+							cond = function()
+								return vim.fn.reg_recording() ~= ""
+							end,
+							color = function()
+								return { fg = Snacks.util.color("Constant") }
+							end,
+						},
+						{
+							function()
 								return require("noice").api.status.command.get()
 							end,
 							cond = function()
