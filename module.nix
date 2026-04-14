@@ -93,8 +93,8 @@ inputs: {
           (buildDotnetGlobalTool {
             pname = "dotnet-easydotnet";
             nugetName = "easydotnet";
-            version = "2.3.63";
-            nugetHash = "sha256-8ywDdEWxDZUtggvY/2d4Revk09+qb3llymru0Ptpp5c=";
+            version = "3.0.31";
+            nugetHash = "sha256-hslyYEaqC3U5I0+bZlqsEmaPZ3RTTlZncGFxXmJR+Ew=";
             dotnet-sdk = pkgs.dotnet-sdk;
           })
         ];
