@@ -12,11 +12,17 @@ return {
 					lsp_format = "fallback",
 					async = true,
 				},
+				formatters = {
+					mdformat = {
+						command = "mdformat",
+						append_args = { "--wrap", "75" },
+					},
+				},
 				formatters_by_ft = {
 					lua = nixInfo(nil, "settings", "cats", "lua") and { "stylua" } or nil,
 					cs = { "csharpier" },
 					nix = { "alejandra" },
-					md = { "mdformat" },
+					markdown = { "mdformat" },
 					-- go = { "gofmt", "golint" },
 					-- templ = { "templ" },
 					-- Conform will run multiple formatters sequentially
