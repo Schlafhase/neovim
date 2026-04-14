@@ -7,9 +7,10 @@ return {
 
 		after = function()
 			require("conform").setup({
-				format_on_save = {
+				format_after_save = {
 					timeout_ms = 500,
 					lsp_format = "fallback",
+					async = true,
 				},
 				formatters_by_ft = {
 					lua = nixInfo(nil, "settings", "cats", "lua") and { "stylua" } or nil,
