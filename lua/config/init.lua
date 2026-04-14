@@ -46,6 +46,7 @@ require(MP:relpath("highlights"))
 require(MP:relpath("keymaps"))
 require(MP:relpath("options"))
 require(MP:relpath("autocmds"))
+require(MP:relpath("commands"))
 
 nixInfo.lze.load({ import = MP:relpath("colorscheme") })
 nixInfo.lze.load({ import = MP:relpath("plugins") })
