@@ -33,4 +33,5 @@ return {
 	{ import = MP:relpath("todo-comments") },
 	{ import = MP:relpath("dropbar") },
 	{ import = MP:relpath("image") },
+	{ import = MP:relpath("git-conflict") },
 }

@@ -128,7 +128,7 @@ inputs: {
         # note we didn't have to specify the `lze` specs name, because it was a top level spec
         extraPackages = with pkgs; [
           tree-sitter
-          mdformat
+          prettier
         ];
         # this `lazy = true` definition will transfer to specs in the contained DAL, if there is one.
         # This is because the definition of lazy in `config.specMods` checks `parentSpec.lazy or false`
@@ -139,7 +139,7 @@ inputs: {
         # plugins are of type wlib.types.stringable
         data = let
           rainbow-delimiters-nvim-newest = pkgs.vimUtils.buildVimPlugin {
-            name = "rainbow-delimiters-nvim";
+            name = "rainbow-delimiters.nvim";
             src = pkgs.fetchFromGitHub {
               owner = "HiPhish";
               repo = "rainbow-delimiters.nvim";
@@ -232,6 +232,7 @@ inputs: {
             todo-comments-nvim
             dropbar-nvim
             image
+            git-conflict-nvim
           ];
       };
     };
