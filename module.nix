@@ -128,6 +128,7 @@ inputs: {
         # note we didn't have to specify the `lze` specs name, because it was a top level spec
         extraPackages = with pkgs; [
           tree-sitter
+          mdformat
         ];
         # this `lazy = true` definition will transfer to specs in the contained DAL, if there is one.
         # This is because the definition of lazy in `config.specMods` checks `parentSpec.lazy or false`

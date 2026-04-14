@@ -16,6 +16,7 @@ return {
 					lua = nixInfo(nil, "settings", "cats", "lua") and { "stylua" } or nil,
 					cs = { "csharpier" },
 					nix = { "alejandra" },
+					md = { "mdformat" },
 					-- go = { "gofmt", "golint" },
 					-- templ = { "templ" },
 					-- Conform will run multiple formatters sequentially
