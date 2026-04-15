@@ -1,7 +1,6 @@
 return {
 	{
 		"nixd",
-		enabled = nixInfo.isNix, -- mason doesn't have nixd
 		lsp = {
 			filetypes = { "nix" },
 			settings = {

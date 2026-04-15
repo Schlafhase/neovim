@@ -4,15 +4,16 @@ return {
 		-- It also gives us a nice way to correlate globals we create with files.
 		"lazydev.nvim",
 		cmd = { "LazyDev" },
+		enabled = false,
 		ft = "lua",
 		after = function(_)
 			require("lazydev").setup({
 				library = {
-					{ words = { "nixInfo%.lze" }, path = nixInfo("lze", "plugins", "start", "lze") .. "/lua" },
-					{
-						words = { "nixInfo%.lze" },
-						path = nixInfo("lzextras", "plugins", "start", "lzextras") .. "/lua",
-					},
+					-- { words = { "nixInfo%.lze" }, path = nixInfo("lze", "plugins", "start", "lze") .. "/lua" },
+					-- {
+					-- 	words = { "nixInfo%.lze" },
+					-- 	path = nixInfo("lzextras", "plugins", "start", "lzextras") .. "/lua",
+					-- },
 				},
 			})
 		end,
@@ -32,7 +33,7 @@ return {
 				Lua = {
 					signatureHelp = { enabled = true },
 					diagnostics = {
-						globals = { "nixInfo", "vim" },
+						globals = { "lze", "lzextras", "vim" },
 						disable = { "missing-fields" },
 					},
 					codeLens = {
@@ -53,6 +54,5 @@ return {
 				},
 			},
 		},
-		-- also these are regular specs and you can use before and after and all the other normal fields
 	},
 }

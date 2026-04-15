@@ -3,13 +3,13 @@ local function gh(x)
 end
 
 vim.pack.add({
-	"BirdeeHub/lze",
-	"BirdeeHub/lzextras",
+	gh("BirdeeHub/lze"),
+	gh("BirdeeHub/lzextras"),
 })
 
 vim.pack.add({
 	gh("olimorris/onedarkpro.nvim"),
-	gh("catpuccin/nvim"),
+	gh("catppuccin/nvim"),
 	gh("bluz71/vim-moonfly-colors"),
 	gh("folke/noice.nvim"),
 	gh("folke/lazydev.nvim"),
@@ -36,7 +36,7 @@ vim.pack.add({
 	gh("folke/trouble.nvim"),
 	gh("nvim-telescope/telescope.nvim"),
 	gh("rcarriga/nvim-notify"),
-	gh("OXY2DE/markview.nvim"),
+	gh("OXY2DEV/markview.nvim"),
 	gh("willothy/moveline.nvim"),
 	gh("folke/persistence.nvim"),
 	gh("windwp/nvim-autopairs"),
@@ -49,9 +49,9 @@ vim.pack.add({
 	gh("Bekaboo/dropbar.nvim"),
 	gh("akinsho/git-conflict.nvim"),
 	gh("mfussenegger/nvim-dap"),
-	gh("igorlfs/nvim-dap/view"),
+	gh("igorlfs/nvim-dap-view"),
 	gh("mrjones2014/smart-splits.nvim"),
-}, { load = function() end })
+}, { load = function() end, confirm = false })
 
 if vim.g.vscode == nil then
 	require("config")

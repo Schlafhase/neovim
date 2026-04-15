@@ -16,7 +16,7 @@ return {
 					},
 				},
 				formatters_by_ft = {
-					lua = nixInfo(nil, "settings", "cats", "lua") and { "stylua" } or nil,
+					lua = { "stylua" },
 					cs = { "csharpier" },
 					nix = { "alejandra" },
 					markdown = { "prettier" },

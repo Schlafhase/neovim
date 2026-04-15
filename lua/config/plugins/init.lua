@@ -17,7 +17,6 @@ return {
 	{ import = MP:relpath("mason") },
 	{ import = MP:relpath("nvim-lint") },
 	-- { import = MP:relpath("nvim-surround") },
-	-- { import = MP:relpath("startup-time") },
 	{ import = MP:relpath("mini") },
 	{ import = MP:relpath("trouble") },
 	{ import = MP:relpath("telescope") },

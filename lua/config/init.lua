@@ -1,5 +1,8 @@
 local MP = ...
 
+_G.lze = require("lze")
+_G.lzextras = require("lzextras")
+
 string.relpath = function(str, sub, n)
 	local result = {}
 	n = type(sub) == "string" and n or sub
@@ -24,31 +27,6 @@ vim.g.start_time = vim.fn.reltime()
 
 vim.loader.enable() -- <- bytecode caching
 
-do
-	-- Set up a global in a way that also handles non-nix compat
-	local ok
-	ok, _G.nixInfo = pcall(require, vim.g.nix_info_plugin_name)
-	if not ok then
-		package.loaded[vim.g.nix_info_plugin_name] = setmetatable({}, {
-			__call = function(_, default)
-				return default
-			end,
-		})
-		_G.nixInfo = require(vim.g.nix_info_plugin_name)
-		-- If you always use the fetcher function to fetch nix values,
-		-- rather than indexing into the tables directly,
-		-- it will use the value you specified as the default
-		-- TODO: for non-nix compat, vim.pack.add in another file and require here.
-	end
-	nixInfo.isNix = vim.g.nix_info_plugin_name ~= nil
-	---@module 'lzextras'
-	---@type lzextras | lze
-	nixInfo.lze = setmetatable(require("lze"), getmetatable(require("lzextras")))
-	function nixInfo.get_nix_plugin_path(name)
-		return nixInfo(nil, "plugins", "lazy", name) or nixInfo(nil, "plugins", "start", name)
-	end
-end
-
 vim.g.netrw_liststyle = 0
 vim.g.netrw_banner = 0
 
@@ -65,12 +43,14 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require(MP:relpath("lze-handlers"))
-require(MP:relpath("highlights"))
-require(MP:relpath("keymaps"))
-require(MP:relpath("options"))
+-- NOTE: Best to keep these two at the top since they export the global Keymap and Autocmd/Augroup functions
 require(MP:relpath("autocmds"))
-require(MP:relpath("commands"))
+require(MP:relpath("keymaps"))
 
-nixInfo.lze.load({ import = MP:relpath("colorscheme") })
-nixInfo.lze.load({ import = MP:relpath("plugins") })
+require(MP:relpath("colorscheme"))
+require(MP:relpath("highlights"))
+require(MP:relpath("options"))
+require(MP:relpath("commands"))
+require(MP:relpath("lze-handlers"))
+
+lze.load({ import = MP:relpath("plugins") })
