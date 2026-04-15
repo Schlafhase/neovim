@@ -217,6 +217,7 @@ inputs: {
             telescope-nvim
             nvim-notify
             markview-nvim
+            # TODO: add latest moveline version
             moveline-nvim
             persistence-nvim
             rainbow-delimiters-nvim-newest
@@ -233,6 +234,7 @@ inputs: {
             git-conflict-nvim
             nvim-dap
             nvim-dap-view
+            smart-splits-nvim
           ];
       };
     };

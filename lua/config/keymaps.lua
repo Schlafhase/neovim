@@ -43,16 +43,11 @@ Keymap("n", "K", function()
 end, { desc = "Open LSP hover" })
 Keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Open diagnostics list" })
 
--- kickstart.nvim starts you with this.
--- But it constantly clobbers your system clipboard whenever you delete anything.
--- It syncs clipboard between OS and Neovim.
---  See `:help 'clipboard'`
--- vim.o.clipboard = 'unnamedplus'
+vim.o.clipboard = "unnamedplus"
 
--- You should instead use these keybindings so that they are still easy to use, but dont conflict
-Keymap({ "v", "x", "n" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
-Keymap({ "n", "v", "x" }, "<leader>Y", '"+yy', { noremap = true, silent = true, desc = "Yank line to clipboard" })
-Keymap({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
+-- Keymap({ "v", "x", "n" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
+-- Keymap({ "n", "v", "x" }, "<leader>Y", '"+yy', { noremap = true, silent = true, desc = "Yank line to clipboard" })
+-- Keymap({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
 Keymap(
 	"i",
 	"<C-p>",
@@ -67,3 +62,5 @@ Keymap(
 )
 
 Keymap("n", "<leader>n", "<cmd>Telescope notify<CR>", { desc = "Show Notifications" })
+
+Keymap("n", "<leader>pu", vim.pack.update, { desc = "Update all plugins" })
