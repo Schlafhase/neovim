@@ -34,4 +34,6 @@ return {
 	{ import = MP:relpath("dropbar") },
 	{ import = MP:relpath("image") },
 	{ import = MP:relpath("git-conflict") },
+	{ import = MP:relpath("nvim-dap") },
+	{ import = MP:relpath("nvim-dap-view") },
 }
