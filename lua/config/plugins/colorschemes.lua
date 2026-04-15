@@ -1,12 +1,10 @@
 return {
 	{
 		"onedarkpro.nvim",
-		auto_enable = true,
 		colorscheme = { "onedark", "onedark_dark", "onedark_vivid", "onelight" },
 	},
 	{
 		"vim-moonfly-colors",
-		auto_enable = true,
 		colorscheme = "moonfly",
 		after = function()
 			Autocmd("ColorScheme", {
@@ -20,7 +18,6 @@ return {
 	},
 	{
 		"catppuccin-nvim",
-		auto_enable = true,
 		colorscheme = {
 			"catppuccin",
 			"catppuccin-latte",

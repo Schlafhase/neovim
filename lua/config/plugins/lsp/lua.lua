@@ -3,7 +3,6 @@ return {
 		-- lazydev makes your lua lsp load only the relevant definitions for a file.
 		-- It also gives us a nice way to correlate globals we create with files.
 		"lazydev.nvim",
-		auto_enable = true,
 		cmd = { "LazyDev" },
 		ft = "lua",
 		after = function(_)
@@ -21,7 +20,6 @@ return {
 	{
 		-- name of the lsp
 		"lua_ls",
-		for_cat = "lua",
 		-- provide a table containing filetypes,
 		-- and then whatever your functions defined in the function type specs expect.
 		-- in our case, it just expects the normal lspconfig setup options,

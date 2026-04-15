@@ -1,7 +1,6 @@
 return {
 	{
 		"snacks.nvim",
-		auto_enable = true,
 		-- snacks makes a global, and then lazily loads itself
 		lazy = false,
 		-- priority only affects startup plugins

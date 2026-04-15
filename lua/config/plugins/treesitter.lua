@@ -2,7 +2,6 @@ return {
 	{
 		"nvim-treesitter",
 		lazy = false,
-		auto_enable = true,
 		after = function(_)
 			---@param buf integer
 			---@param language string
@@ -23,6 +22,10 @@ return {
 				-- enables treesitter based indentation
 				if vim.treesitter.query.get(language, "indents") ~= nil then
 					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end
+
+				if language == "nix" then
+					vim.bo.indentexpr = "" -- treesitter indent for nix is horrible
 				end
 
 				return true
@@ -51,7 +54,6 @@ return {
 	},
 	{
 		"nvim-treesitter-textobjects",
-		auto_enable = true,
 		lazy = false,
 		before = function(plugin)
 			-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/tree/main?tab=readme-ov-file#using-a-package-manager

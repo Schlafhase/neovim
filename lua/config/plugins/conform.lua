@@ -1,10 +1,7 @@
 return {
 	{
 		"conform.nvim",
-		for_cat = "general",
-		auto_enable = true,
 		event = "BufReadPre",
-
 		after = function()
 			require("conform").setup({
 				format_after_save = {

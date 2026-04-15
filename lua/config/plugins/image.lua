@@ -1,6 +1,6 @@
 return {
 	{
-		"vimplugin-image.nvim",
+		"image.nvim",
 		event = "DeferredUIEnter",
 		setup = {},
 		before = function()

@@ -1,7 +1,6 @@
 return {
 	{
 		"persistence.nvim",
-		auto_enable = true,
 		event = "DeferredUIEnter",
 		priority = 500,
 

@@ -2,6 +2,7 @@
     "diagnostics.globals": [
         "nixInfo",
         "vim",
-        "autocmd"
+        "autocmd",
+        "dap"
     ]
 }

@@ -1,7 +1,6 @@
 return {
 	{
 		"nvim-lspconfig",
-		auto_enable = true,
 		-- NOTE: define a function for lsp,
 		-- and it will run for all specs with type(plugin.lsp) == table
 		-- when their filetype trigger loads them
@@ -57,9 +56,6 @@ return {
 					nmap("gI", function()
 						Snacks.picker.lsp_implementations()
 					end, "[G]oto [I]mplementation")
-					nmap("<leader>ds", function()
-						Snacks.picker.lsp_symbols()
-					end, "[D]ocument [S]ymbols")
 					nmap("<leader>ws", function()
 						Snacks.picker.lsp_workspace_symbols()
 					end, "[W]orkspace [S]ymbols")

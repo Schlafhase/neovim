@@ -3,7 +3,6 @@ local path = require("config.util.path")
 return {
 	{
 		"lualine.nvim",
-		auto_enable = true,
 		-- cmd = { "" },
 		event = "DeferredUIEnter",
 		-- ft = "",

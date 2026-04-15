@@ -1,17 +1,14 @@
 return {
 	{
 		"blink.compat",
-		auto_enable = true,
 		dep_of = { "cmp-cmdline" },
 	},
 	{
 		"colorful-menu.nvim",
-		auto_enable = true,
 		on_plugin = { "blink.cmp" },
 	},
 	{
 		"blink.cmp",
-		auto_enable = true,
 		event = { "InsertEnter", "CmdlineEnter" },
 		after = function(_)
 			require("blink.cmp").setup({

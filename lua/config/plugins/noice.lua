@@ -2,7 +2,6 @@ return {
 	{
 		"noice.nvim",
 		lazy = false,
-		auto_enable = true,
 		after = function()
 			require("noice").setup({
 				notify = {

@@ -1,8 +1,7 @@
 return {
 	{
 		-- "rainbow-delimiters.nvim",
-		"vimplugin-rainbow-delimiters.nvim",
-		auto_enable = true,
+		"rainbow-delimiters.nvim",
 		event = "DeferredUIEnter",
 		after = function()
 			vim.g.rainbow_delimiters = {

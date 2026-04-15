@@ -1,3 +1,4 @@
+# TODO: probably better to use this only to wrap nvim and use vim.pack for installing plugins
 inputs: {
   config,
   wlib,
@@ -6,14 +7,13 @@ inputs: {
   ...
 }: {
   imports = [wlib.wrapperModules.neovim];
-  # NOTE: see the tips and tricks section or the bottom of this file + flake inputs to understand this value
-  options.nvim-lib.neovimPlugins = lib.mkOption {
-    readOnly = true;
-    type = lib.types.attrsOf wlib.types.stringable;
-    # Makes plugins autobuilt from our inputs available with
-    # `config.nvim-lib.neovimPlugins.<name_without_prefix>`
-    default = config.nvim-lib.pluginsFromPrefix "plugins-" inputs;
-  };
+  # options.nvim-lib.neovimPlugins = lib.mkOption {
+  #   readOnly = true;
+  #   type = lib.types.attrsOf wlib.types.stringable;
+  #   # Makes plugins autobuilt from our inputs available with
+  #   # `config.nvim-lib.neovimPlugins.<name_without_prefix>`
+  #   default = config.nvim-lib.pluginsFromPrefix "plugins-" inputs;
+  # };
 
   # choose a directory for your config.
   config = {
@@ -89,6 +89,7 @@ inputs: {
           roslyn-ls
           dotnetCorePackages.sdk_10_0
           dotnet-ef
+          netcoredbg
           (writeShellScriptBin "roslyn" "Microsoft.CodeAnalysis.LanguageServer")
           (buildDotnetGlobalTool {
             pname = "dotnet-easydotnet";
@@ -103,8 +104,6 @@ inputs: {
         after = ["general"];
         lazy = true;
         data = with pkgs.vimPlugins; [
-          # TODO: check if this is needed in the future
-          go-nvim
         ];
         extraPackages = with pkgs; [
           gopls
@@ -122,23 +121,15 @@ inputs: {
         ];
       };
       general = {
-        # this would ensure any config included from nix in here will be ran after any provided by the `lze` spec
-        # If we provided any from within either spec, anyway
         after = ["lze"];
-        # note we didn't have to specify the `lze` specs name, because it was a top level spec
         extraPackages = with pkgs; [
           tree-sitter
           prettier
         ];
-        # this `lazy = true` definition will transfer to specs in the contained DAL, if there is one.
-        # This is because the definition of lazy in `config.specMods` checks `parentSpec.lazy or false`
-        # the submodule type for `config.specMods` gets `parentSpec` as a `specialArg`.
-        # you can define options like this too!
         lazy = true;
-        # here we chose a DAL of plugins, but we can also pass a single plugin, or null
-        # plugins are of type wlib.types.stringable
         data = let
           rainbow-delimiters-nvim-newest = pkgs.vimUtils.buildVimPlugin {
+            pname = "rainbow-delimiters.nvim";
             name = "rainbow-delimiters.nvim";
             src = pkgs.fetchFromGitHub {
               owner = "HiPhish";
@@ -154,11 +145,12 @@ inputs: {
           };
 
           easy-dotnet-newest = pkgs.vimUtils.buildVimPlugin {
+            pname = "easy-dotnet.nvim";
             name = "easy-dotnet.nvim";
             src = pkgs.fetchFromGitHub {
               owner = "GustavEikaas";
               repo = "easy-dotnet.nvim";
-              rev = "6b92080c6c4d2550645783f1cd1926482090a495";
+              rev = "008427f3df32f99abaff8803c9e42facc151d501";
               hash = "sha256-TOmriG98U8D9GZek2S+eXFTqrd+yRrufuRQK898SAUA=";
             };
 
@@ -170,6 +162,7 @@ inputs: {
           };
 
           image = pkgs.vimUtils.buildVimPlugin {
+            pname = "image.nvim";
             name = "image.nvim";
             src = pkgs.fetchFromGitHub {
               owner = "3rd";
@@ -180,6 +173,21 @@ inputs: {
 
             nvimSkipModules = [
               "minimal-setup"
+            ];
+          };
+
+          treesitter = pkgs.vimUtils.buildVimPlugin {
+            pname = "nvim-treesitter";
+            name = "nvim-treesitter";
+            src = pkgs.fetchFromGitHub {
+              owner = "nvim-treesitter";
+              repo = "nvim-treesitter";
+              rev = "4916d6592ede8c07973490d9322f187e07dfefac";
+              hash = "sha256-PQR6tFt4lCrAZNQG7BLMD1IiCKja9wDS1S4laGJf/HE=";
+            };
+
+            nvimSkipModules = [
+              "nvim-treesitter._meta.parsers"
             ];
           };
         in
@@ -204,15 +212,7 @@ inputs: {
             nvim-lint
             conform-nvim
             nvim-treesitter-textobjects
-            # treesitter + grammars
-            nvim-treesitter.withAllGrammars
-            # This is for if you only want some of the grammars
-            # (nvim-treesitter.withPlugins (
-            #   plugins: with plugins; [
-            #     nix
-            #     lua
-            #   ]
-            # ))
+            treesitter
             vim-illuminate
             mini-icons
             trouble-nvim
@@ -233,63 +233,64 @@ inputs: {
             dropbar-nvim
             image
             git-conflict-nvim
+            nvim-dap
           ];
       };
     };
-    specMods = {
-      # When this module is ran in an inner list,
-      # this will contain `config` of the parent spec
-      parentSpec ? null,
-      # and this will contain `options`
-      # otherwise they will be `null`
-      parentOpts ? null,
-      parentName ? null,
-      # and then config from this one, as normal
-      config,
-      # and the other module arguments.
-      ...
-    }: {
-      # you could use this to change defaults for the specs
-      # config.collateGrammars = lib.mkDefault (parentSpec.collateGrammars or false);
-      # config.autoconfig = lib.mkDefault (parentSpec.autoconfig or false);
-      # config.runtimeDeps = lib.mkDefault (parentSpec.runtimeDeps or false);
-      # config.pluginDeps = lib.mkDefault (parentSpec.pluginDeps or false);
-      # or something more interesting like:
-      # add an extraPackages field to the specs themselves
-      options.extraPackages = lib.mkOption {
-        type = lib.types.listOf wlib.types.stringable;
-        default = [];
-        description = "a extraPackages spec field to put packages to suffix to the PATH";
-      };
-      # You could do this too
-      # config.before = lib.mkDefault [ "INIT_MAIN" ];
-    };
-    extraPackages = config.specCollect (acc: v: acc ++ (v.extraPackages or [])) [];
+    #   specMods = {
+    #     # When this module is ran in an inner list,
+    #     # this will contain `config` of the parent spec
+    #     parentSpec ? null,
+    #     # and this will contain `options`
+    #     # otherwise they will be `null`
+    #     parentOpts ? null,
+    #     parentName ? null,
+    #     # and then config from this one, as normal
+    #     config,
+    #     # and the other module arguments.
+    #     ...
+    #   }: {
+    #     # you could use this to change defaults for the specs
+    #     # config.collateGrammars = lib.mkDefault (parentSpec.collateGrammars or false);
+    #     # config.autoconfig = lib.mkDefault (parentSpec.autoconfig or false);
+    #     # config.runtimeDeps = lib.mkDefault (parentSpec.runtimeDeps or false);
+    #     # config.pluginDeps = lib.mkDefault (parentSpec.pluginDeps or false);
+    #     # or something more interesting like:
+    #     # add an extraPackages field to the specs themselves
+    #     options.extraPackages = lib.mkOption {
+    #       type = lib.types.listOf wlib.types.stringable;
+    #       default = [];
+    #       description = "a extraPackages spec field to put packages to suffix to the PATH";
+    #     };
+    #     # You could do this too
+    #     # config.before = lib.mkDefault [ "INIT_MAIN" ];
+    #   };
+    # extraPackages = config.specCollect (acc: v: acc ++ (v.extraPackages or [])) [];
   };
 
   # Inform our lua of which top level specs are enabled
-  options.settings.cats = lib.mkOption {
-    readOnly = true;
-    type = lib.types.attrsOf lib.types.bool;
-    default = builtins.mapAttrs (_: v: v.enable) config.specs;
-  };
-  # build plugins from inputs set
-  options.nvim-lib.pluginsFromPrefix = lib.mkOption {
-    type = lib.types.raw;
-    readOnly = true;
-    default = prefix: inputs:
-      lib.pipe inputs [
-        builtins.attrNames
-        (builtins.filter (s: lib.hasPrefix prefix s))
-        (map (
-          input: let
-            name = lib.removePrefix prefix input;
-          in {
-            inherit name;
-            value = config.nvim-lib.mkPlugin name inputs.${input};
-          }
-        ))
-        builtins.listToAttrs
-      ];
-  };
+  # options.settings.cats = lib.mkOption {
+  #   readOnly = true;
+  #   type = lib.types.attrsOf lib.types.bool;
+  #   default = builtins.mapAttrs (_: v: v.enable) config.specs;
+  # };
+  # # build plugins from inputs set
+  # options.nvim-lib.pluginsFromPrefix = lib.mkOption {
+  #   type = lib.types.raw;
+  #   readOnly = true;
+  #   default = prefix: inputs:
+  #     lib.pipe inputs [
+  #       builtins.attrNames
+  #       (builtins.filter (s: lib.hasPrefix prefix s))
+  #       (map (
+  #         input: let
+  #           name = lib.removePrefix prefix input;
+  #         in {
+  #           inherit name;
+  #           value = config.nvim-lib.mkPlugin name inputs.${input};
+  #         }
+  #       ))
+  #       builtins.listToAttrs
+  #     ];
+  # };
 }
