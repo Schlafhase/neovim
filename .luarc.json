@@ -3,6 +3,7 @@
         "nixInfo",
         "vim",
         "autocmd",
-        "dap"
+        "dap",
+        "Snacks"
     ]
 }

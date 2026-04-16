@@ -34,6 +34,7 @@ vim.o.mouse = "n"
 vim.opt.cpoptions:append("I")
 vim.o.expandtab = true
 vim.o.tabstop = 2
+vim.o.shiftwidth = 2
 vim.o.smartindent = true
 vim.o.autoindent = true
 vim.o.softtabstop = 2

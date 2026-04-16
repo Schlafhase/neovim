@@ -23,7 +23,6 @@ vim.pack.add({
 	gh("nvim-treesitter/nvim-treesitter-textobjects"),
 	gh("folke/snacks.nvim"),
 	gh("neovim/nvim-lspconfig"),
-	-- gh("kylechui/nvim-surround"),
 	gh("saghen/blink.cmp"),
 	gh("saghen/blink.compat"),
 	gh("hrsh7th/cmp-cmdline"),

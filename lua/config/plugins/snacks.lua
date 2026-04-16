@@ -22,6 +22,27 @@ return {
 				end
 			end
 
+			local resize = function(dir)
+				return function()
+					local ok, smartsplits = pcall(require, "smart-splits")
+					if not ok then
+						return
+					end
+					if dir == "left" then
+						vim.schedule(smartsplits.resize_left)
+					end
+					if dir == "up" then
+						vim.schedule(smartsplits.resize_up)
+					end
+					if dir == "down" then
+						vim.schedule(smartsplits.resize_down)
+					end
+					if dir == "right" then
+						vim.schedule(smartsplits.resize_right)
+					end
+				end
+			end
+
 			require("snacks").setup(
 				---@class snacks.Config
 				{
@@ -71,6 +92,31 @@ return {
 								nav_k = { "<C-k>", term_nav("k"), desc = "Go to Upper Window", expr = true, mode = "t" },
 								nav_l = { "<C-l>", term_nav("l"), desc = "Go to Right Window", expr = true, mode = "t" },
 								hide = { "<C-/>", "hide", desc = "Hide Terminal", mode = "t" },
+
+								resize_left = {
+									"<C-Left>",
+									resize("left"),
+									desc = "Resize Window left",
+									mode = "t",
+								},
+								resize_up = {
+									"<C-Up>",
+									resize("up"),
+									desc = "Resize Window up",
+									mode = "t",
+								},
+								resize_down = {
+									"<C-Down>",
+									resize("down"),
+									desc = "Resize Window down",
+									mode = "t",
+								},
+								resize_right = {
+									"<C-Right>",
+									resize("right"),
+									desc = "Resize Window right",
+									mode = "t",
+								},
 							},
 						},
 					},
@@ -78,12 +124,10 @@ return {
 					bigfile = {},
 					quickfile = {},
 					indent = {
-						scope = {
-							hl = "MySnacksIndent",
-						},
+						priority = 500,
+						scope = { enabled = true },
 						chunk = {
-							-- enabled = true,
-							hl = "MySnacksIndent",
+							enabled = true,
 						},
 					},
 					input = {},
