@@ -54,6 +54,7 @@ return {
 						"score",
 						"sort_text",
 					},
+					prebuilt_binaries = { force_version = "v1.9.1" },
 				},
 				signature = {
 					enabled = true,
