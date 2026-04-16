@@ -128,6 +128,13 @@ return {
 						scope = { enabled = true },
 						chunk = {
 							enabled = true,
+							char = {
+								corner_top = "╭",
+								corner_bottom = "╰",
+								horizontal = "─",
+								vertical = "│",
+								arrow = "󰐊",
+							},
 						},
 					},
 					input = {},

@@ -1,6 +1,6 @@
 return {
 	{
-		"moveline-nvim",
+		"moveline.nvim",
 		event = "BufReadPre",
 		after = function(_)
 			local moveline = require("moveline")
