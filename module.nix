@@ -34,7 +34,14 @@
     ghc
   ];
 
-  configDir = lib.cleanSource ./.;
+  configDir = pkgs.stdenv.mkDerivation {
+    name = "nvim-config";
+    src = ./.;
+    installPhase = ''
+      mkdir -p $out
+      cp -r ./* $out
+    '';
+  };
 in
   pkgs.symlinkJoin {
     name = "nvim";
@@ -42,6 +49,10 @@ in
     nativeBuildInputs = [pkgs.makeWrapper];
     postBuild = ''
       wrapProgram $out/bin/nvim \
-        --prefix PATH : ${lib.makeBinPath extraPackages} --add-flags '-u ${configDir}/init.lua'
+        --set VIMINIT "lua dofile('${configDir}/init.lua')" \
+        --add-flags '--cmd' \
+        --add-flags "'set runtimepath^=${configDir}'" \
+        --prefix PATH : ${lib.makeBinPath extraPackages} \
+        --set NVIM_APPNAME nvim-linus
     '';
   }

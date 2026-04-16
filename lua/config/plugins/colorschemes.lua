@@ -8,6 +8,7 @@ return {
 		colorscheme = "moonfly",
 		after = function()
 			Autocmd("ColorScheme", {
+				group = Augroup("moonfly-override"),
 				pattern = "moonfly",
 				callback = function()
 					local palette = require("moonfly").palette

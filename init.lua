@@ -8,6 +8,8 @@ vim.pack.add({
 })
 
 vim.pack.add({
+	gh("nvim-lua/plenary.nvim"),
+	gh("MunifTanjim/nui.nvim"),
 	gh("olimorris/onedarkpro.nvim"),
 	gh("catppuccin/nvim"),
 	gh("bluz71/vim-moonfly-colors"),

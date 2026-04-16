@@ -36,4 +36,6 @@ return {
 	{ import = MP:relpath("nvim-dap") },
 	{ import = MP:relpath("nvim-dap-view") },
 	{ import = MP:relpath("smart-splits") },
+	{ import = MP:relpath("plenary") },
+	{ import = MP:relpath("nui") },
 }
