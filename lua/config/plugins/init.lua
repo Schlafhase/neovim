@@ -38,4 +38,7 @@ return {
 	{ import = MP:relpath("smart-splits") },
 	{ import = MP:relpath("plenary") },
 	{ import = MP:relpath("nui") },
+	-- { import = MP:relpath("diagram") },
+	{ import = MP:relpath("markdown-preview") },
+	{ import = MP:relpath("live-server") },
 }
