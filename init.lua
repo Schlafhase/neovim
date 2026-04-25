@@ -52,6 +52,7 @@ vim.pack.add({
 	gh("mfussenegger/nvim-dap"),
 	gh("igorlfs/nvim-dap-view"),
 	gh("mrjones2014/smart-splits.nvim"),
+	gh("mfussenegger/nvim-dap-python"),
 }, { load = function() end, confirm = false })
 
 if vim.g.vscode == nil then

@@ -32,6 +32,14 @@
 
     haskell-language-server
     ghc
+
+    (python3.withPackages (python-pkgs: [
+      python-pkgs.numpy
+      python-pkgs.debugpy
+    ]))
+    pyright
+    black
+    python312Packages.debugpy
   ];
 
   configDir = pkgs.stdenv.mkDerivation {

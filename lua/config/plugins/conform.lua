@@ -21,6 +21,7 @@ return {
 					nix = { "alejandra" },
 					markdown = { "prettier" },
 					javascript = { "prettier" },
+					python = { "black" },
 				},
 			})
 		end,

@@ -7,4 +7,5 @@ return {
 	{ import = MP:relpath("haskell") },
 	{ import = MP:relpath("lua") },
 	{ import = MP:relpath("nix") },
+	{ import = MP:relpath("python") },
 }
