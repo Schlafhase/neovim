@@ -1,7 +1,7 @@
 return {
 	{
 		"live-server.nvim",
-		ft = "markdown",
+		dep_of = { "markdown-preview.nvim" },
 		setup_module = "live_server",
 		setup = {},
 	},

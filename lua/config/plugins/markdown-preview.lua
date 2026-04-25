@@ -1,7 +1,7 @@
 return {
 	{
 		"markdown-preview.nvim",
-		on_plugin = "live-server.nvim",
+		ft = "markdown",
 		setup_module = "markdown_preview",
 		setup = {
 			debounce_ms = 10,

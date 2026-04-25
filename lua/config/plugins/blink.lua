@@ -1,5 +1,9 @@
 return {
 	{
+		"blink.lib",
+		dep_of = { "blink.cmp" },
+	},
+	{
 		"blink.compat",
 		dep_of = { "cmp-cmdline" },
 	},
