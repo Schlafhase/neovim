@@ -20,6 +20,8 @@
       dotnet-sdk = pkgs.dotnet-sdk;
     })
 
+    jdt-language-server
+
     alejandra
     nixd
 

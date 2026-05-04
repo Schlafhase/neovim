@@ -8,4 +8,5 @@ return {
 	{ import = MP:relpath("lua") },
 	{ import = MP:relpath("nix") },
 	{ import = MP:relpath("python") },
+	{ import = MP:relpath("java") },
 }

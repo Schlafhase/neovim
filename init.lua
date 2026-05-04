@@ -56,6 +56,8 @@ vim.pack.add({
 	gh("mfussenegger/nvim-dap-python"),
 	gh("selimacerbas/markdown-preview.nvim"),
 	gh("selimacerbas/live-server.nvim"),
+	{ src = gh("JavaHello/spring-boot.nvim"), version = "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0" },
+	gh("nvim-java/nvim-java"),
 }, { load = function() end, confirm = false })
 
 if vim.g.vscode == nil then
