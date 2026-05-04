@@ -15,8 +15,8 @@
     (buildDotnetGlobalTool {
       pname = "dotnet-easydotnet";
       nugetName = "easydotnet";
-      version = "3.0.33";
-      nugetHash = "sha256-owjlIzwsYr6gNBpZawtyK4EY6xvKRgcvQ8dxkTRwXIY=";
+      version = "3.1.3";
+      nugetHash = "sha256-MasiP8L7t/wvUX2azAqG9DxLezr2nNl2DA0ZUKbnPD8=";
       dotnet-sdk = pkgs.dotnet-sdk;
     })
 
