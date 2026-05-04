@@ -6,6 +6,7 @@ return {
 		-- keys = "",
 		after = function(plugin)
 			require("nvim-surround").setup()
+			Keymap({ "n", "v" }, "gsa")
 		end,
 	},
 }

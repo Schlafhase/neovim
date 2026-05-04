@@ -35,6 +35,7 @@ vim.pack.add({
 	gh("stevearc/conform.nvim"),
 	gh("RRethy/vim-illuminate"),
 	gh("nvim-mini/mini.icons"),
+	gh("nvim-mini/mini.surround"),
 	gh("folke/trouble.nvim"),
 	gh("nvim-telescope/telescope.nvim"),
 	gh("rcarriga/nvim-notify"),

@@ -4,6 +4,13 @@ return {
 		event = "BufReadPost",
 		after = function(_)
 			local flash = require("flash")
+			flash.setup({
+				modes = {
+					search = {
+						enabled = true,
+					},
+				},
+			})
 			flash.toggle(true)
 			Keymap({ "n", "x", "o" }, "s", flash.jump)
 			Keymap({ "n", "x", "o" }, "S", flash.treesitter)
