@@ -41,4 +41,6 @@ return {
 	-- { import = MP:relpath("diagram") },
 	{ import = MP:relpath("markdown-preview") },
 	{ import = MP:relpath("live-server") },
+	{ import = MP:relpath("async") },
+	{ import = MP:relpath("refactoring") },
 }

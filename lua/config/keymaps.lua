@@ -41,6 +41,9 @@ Keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 Keymap("n", "K", function()
 	vim.lsp.buf.hover()
 end, { desc = "Open LSP hover" })
+Keymap({ "n", "i" }, "<M-CR>", function()
+	vim.lsp.buf.code_action()
+end)
 Keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Open diagnostics list" })
 
 vim.o.clipboard = "unnamedplus"
