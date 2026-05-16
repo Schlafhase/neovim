@@ -1,7 +1,7 @@
 return {
 	{
 		"conform.nvim",
-		event = "BufReadPre",
+		event = "DeferredUIEnter",
 		after = function()
 			require("conform").setup({
 				format_after_save = {

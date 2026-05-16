@@ -61,6 +61,7 @@ vim.pack.add({
 	gh("nvim-java/nvim-java"),
 	gh("lewis6991/async.nvim"),
 	gh("ThePrimeagen/refactoring.nvim"),
+	gh("pynappo/hyprlang-to-lua.nvim"),
 }, { load = function() end, confirm = false })
 
 if vim.g.vscode == nil then
