@@ -43,4 +43,5 @@ return {
 	{ import = MP:relpath("live-server") },
 	{ import = MP:relpath("async") },
 	{ import = MP:relpath("refactoring") },
+	{ import = MP:relpath("otter") },
 }

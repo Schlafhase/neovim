@@ -62,7 +62,9 @@ vim.pack.add({
 	gh("lewis6991/async.nvim"),
 	gh("ThePrimeagen/refactoring.nvim"),
 	gh("pynappo/hyprlang-to-lua.nvim"),
+	gh("jmbuhr/otter.nvim"),
 }, { load = function() end, confirm = false })
+-- Loading is handled by lze
 
 if vim.g.vscode == nil then
 	require("config")
