@@ -4,7 +4,7 @@ return {
 		-- It also gives us a nice way to correlate globals we create with files.
 		"lazydev.nvim",
 		cmd = { "LazyDev" },
-		enabled = false,
+		enabled = true,
 		ft = "lua",
 		after = function(_)
 			require("lazydev").setup({

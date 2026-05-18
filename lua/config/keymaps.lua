@@ -67,3 +67,10 @@ Keymap(
 Keymap("n", "<leader>n", "<cmd>Telescope notify<CR>", { desc = "Show Notifications" })
 
 Keymap("n", "<leader>pu", vim.pack.update, { desc = "Update all plugins" })
+
+local moveline = require("config.custom.moveline")
+
+Keymap({ "n", "i" }, "<M-k>", moveline.move_up)
+Keymap({ "n", "i" }, "<M-j>", moveline.move_down)
+-- Keymap("v", "<M-k>", moveline.block_up)
+-- Keymap("v", "<M-j>", moveline.block_down)

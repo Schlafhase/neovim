@@ -2,6 +2,7 @@ return {
 	{
 		"moveline.nvim",
 		event = "BufReadPre",
+		enabled = false,
 		after = function(_)
 			local moveline = require("moveline")
 
