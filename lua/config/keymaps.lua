@@ -1,3 +1,4 @@
+---@diagnostic disable: param-type-mismatch
 Keymap = vim.keymap.set
 
 -- [[ Basic Keymaps ]]
@@ -68,9 +69,21 @@ Keymap("n", "<leader>n", "<cmd>Telescope notify<CR>", { desc = "Show Notificatio
 
 Keymap("n", "<leader>pu", vim.pack.update, { desc = "Update all plugins" })
 
-local moveline = require("config.custom.moveline")
+local ml = require("config.custom.moveline")
 
-Keymap({ "n", "i" }, "<M-k>", moveline.move_up)
-Keymap({ "n", "i" }, "<M-j>", moveline.move_down)
--- Keymap("v", "<M-k>", moveline.block_up)
--- Keymap("v", "<M-j>", moveline.block_down)
+Keymap("n", "<M-k>", function()
+	ml.move(".-2")
+end)
+Keymap("n", "<M-j>", function()
+	ml.move(".+1")
+end)
+Keymap("x", "<M-k>", function()
+	ml.move_block("'<-2")
+end)
+Keymap("x", "<M-j>", function()
+	ml.move_block("'>+1")
+end)
+Keymap("n", "<M-l>", ">>")
+Keymap("n", "<M-h>", "<<")
+Keymap("v", "<M-l>", ">gv")
+Keymap("v", "<M-h>", "<gv")
