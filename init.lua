@@ -61,6 +61,7 @@ vim.pack.add({
 	gh("lewis6991/async.nvim"),
 	gh("ThePrimeagen/refactoring.nvim"),
 	gh("jmbuhr/otter.nvim"),
+	gh("wakatime/vim-wakatime"),
 }, { load = function() end, confirm = false })
 -- Loading is handled by lze
 

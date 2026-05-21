@@ -94,25 +94,25 @@ return {
 								hide = { "<C-/>", "hide", desc = "Hide Terminal", mode = "t" },
 
 								resize_left = {
-									"<C-Left>",
+									"<C-S-H",
 									resize("left"),
 									desc = "Resize Window left",
 									mode = "t",
 								},
 								resize_up = {
-									"<C-Up>",
+									"<C-S-K>",
 									resize("up"),
 									desc = "Resize Window up",
 									mode = "t",
 								},
 								resize_down = {
-									"<C-Down>",
+									"<C-S-J>",
 									resize("down"),
 									desc = "Resize Window down",
 									mode = "t",
 								},
 								resize_right = {
-									"<C-Right>",
+									"<C-S-L>",
 									resize("right"),
 									desc = "Resize Window right",
 									mode = "t",
@@ -154,6 +154,9 @@ return {
 						refresh = 50, -- refresh at most every 50ms
 					},
 					dashboard = {
+						hide = {
+							statusline = false,
+						},
 						preset = {
 							header = require("config.ascii").dos_rebel,
 							keys = {

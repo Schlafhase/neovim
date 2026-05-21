@@ -4,11 +4,12 @@ return {
 	{
 		"lualine.nvim",
 		-- cmd = { "" },
-		event = "DeferredUIEnter",
 		-- ft = "",
 		-- keys = "",
 		-- colorscheme = "",
+		event = "DeferredUIEnter",
 		after = function(plugin)
+			vim.o.laststatus = 3
 			require("lualine").setup({
 				options = {
 					theme = "auto",

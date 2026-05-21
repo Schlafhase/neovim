@@ -1,4 +1,3 @@
----@diagnostic disable: param-type-mismatch
 Keymap = vim.keymap.set
 
 -- [[ Basic Keymaps ]]
