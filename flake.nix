@@ -10,13 +10,20 @@
   in {
     packages = forAllSystems (system: let
       pkgs = import nixpkgs {inherit system;};
+      neovimPackages = pkgs.lib.evalModules {
+        modules = [
+          ./module.nix
+        ];
+      };
     in {
-      default = pkgs.callPackage ./module.nix {};
+      default = builtins.elemAt neovimPackages 0;
       nvim = self.packages.${system}.default;
+      devnvim = builtins.elemAt neovimPackages 1;
     });
 
     overlays.default = final: prev: {
       nvim = self.packages.${final.system}.default;
+      devnvim = self.packages.${final.system}.devnvim;
     };
     overlays.nvim = self.overlays.default;
   };
