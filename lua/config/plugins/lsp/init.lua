@@ -9,4 +9,5 @@ return {
 	{ import = MP:relpath("nix") },
 	{ import = MP:relpath("python") },
 	{ import = MP:relpath("java") },
+	{ import = MP:relpath("web") },
 }
