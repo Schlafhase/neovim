@@ -7,10 +7,10 @@ return {
 		},
 		after = function()
 			local smartsplits = require("smart-splits")
-			Keymap({ "n", "v", "i" }, "<C-S-H>", smartsplits.resize_left)
-			Keymap({ "n", "v", "i" }, "<C-S-J>", smartsplits.resize_down)
-			Keymap({ "n", "v", "i" }, "<C-S-K>", smartsplits.resize_up)
-			Keymap({ "n", "v", "i" }, "^[[108;6u", smartsplits.resize_right)
+			Keymap({ "n", "v", "i" }, "<C-Left>", smartsplits.resize_left)
+			Keymap({ "n", "v", "i" }, "<C-Down>", smartsplits.resize_down)
+			Keymap({ "n", "v", "i" }, "<C-Up>", smartsplits.resize_up)
+			Keymap({ "n", "v", "i" }, "<C-Right", smartsplits.resize_right)
 		end,
 	},
 }
