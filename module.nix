@@ -44,7 +44,7 @@
     python312Packages.debugpy
 
     eslint
-    vscode-langservers-extracted.csslint
+    vscode-langservers-extracted.cssls
     vscode-langservers-extracted.html
   ];
 
