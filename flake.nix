@@ -11,10 +11,9 @@
     packages = forAllSystems (system: let
       pkgs = import nixpkgs {inherit system;};
       neovimPackages =
-        (pkgs.lib.evalModules {
-          modules = [
-            ./module.nix
-          ];
+        (import ./module.nix {
+          inherit pkgs;
+          lib = pkgs.lib;
         }).packages;
     in {
       default = builtins.elemAt neovimPackages 0;

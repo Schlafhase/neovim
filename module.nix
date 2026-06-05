@@ -44,8 +44,7 @@
     python312Packages.debugpy
 
     eslint
-    vscode-langservers-extracted.cssls
-    vscode-langservers-extracted.html
+    vscode-langservers-extracted
   ];
 
   configDir = pkgs.stdenv.mkDerivation {
@@ -58,33 +57,34 @@
   };
 in {
   packages = [
-    pkgs.symlinkJoin
-    {
-      name = "nvim";
-      paths = [pkgs.neovim-unwrapped];
-      nativeBuildInputs = [pkgs.makeWrapper];
-      postBuild = ''
-        wrapProgram $out/bin/nvim \
-          --set VIMINIT "lua dofile('${configDir}/init.lua')" \
-          --add-flags '--cmd' \
-          --add-flags "'set runtimepath^=${configDir}'" \
-          --prefix PATH : ${lib.makeBinPath extraPackages} \
-          --set NVIM_APPNAME nvim-linus
-      '';
-    }
-    pkgs.symlinkJoin
-    {
-      name = "devnvim";
-      paths = [pkgs.neovim-unwrapped];
-      nativeBuildInputs = [pkgs.makeWrapper];
-      postBuild = ''
-        wrapProgram $out/bin/nvim \
-          --set VIMINIT "lua dofile('~/Projects/neovim/init.lua')" \
-          --add-flags '--cmd' \
-          --add-flags "'set runtimepath^=~/Projects/neovim'" \
-          --prefix PATH : ${lib.makeBinPath extraPackages} \
-          --set NVIM_APPNAME nvim-linus
-      '';
-    }
+    (pkgs.symlinkJoin
+      {
+        name = "nvim";
+        paths = [pkgs.neovim-unwrapped];
+        nativeBuildInputs = [pkgs.makeWrapper];
+        postBuild = ''
+          wrapProgram $out/bin/nvim \
+            --set VIMINIT "lua dofile('${configDir}/init.lua')" \
+            --add-flags '--cmd' \
+            --add-flags "'set runtimepath^=${configDir}'" \
+            --prefix PATH : ${lib.makeBinPath extraPackages} \
+            --set NVIM_APPNAME nvim-linus
+        '';
+      })
+    (pkgs.symlinkJoin
+      {
+        name = "devnvim";
+        paths = [pkgs.neovim-unwrapped];
+        nativeBuildInputs = [pkgs.makeWrapper];
+        postBuild = ''
+          wrapProgram $out/bin/nvim \
+            --set VIMINIT "lua dofile(os.getenv('HOME') .. '/Projects/neovim/init.lua')" \
+            --add-flags '--cmd' \
+            --add-flags "'set runtimepath^=~/Projects/neovim'" \
+            --prefix PATH : ${lib.makeBinPath extraPackages} \
+            --set NVIM_APPNAME nvim-linus
+          mv $out/bin/nvim $out/bin/devnvim
+        '';
+      })
   ];
 }
