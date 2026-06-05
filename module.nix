@@ -42,6 +42,10 @@
     pyright
     black
     python312Packages.debugpy
+
+    vscode-langservers-extracted.eslint
+    vscode-langservers-extracted.csslint
+    vscode-langservers-extracted.html
   ];
 
   configDir = pkgs.stdenv.mkDerivation {
@@ -52,17 +56,35 @@
       cp -r ./* $out
     '';
   };
-in
-  pkgs.symlinkJoin {
-    name = "nvim";
-    paths = [pkgs.neovim-unwrapped];
-    nativeBuildInputs = [pkgs.makeWrapper];
-    postBuild = ''
-      wrapProgram $out/bin/nvim \
-        --set VIMINIT "lua dofile('${configDir}/init.lua')" \
-        --add-flags '--cmd' \
-        --add-flags "'set runtimepath^=${configDir}'" \
-        --prefix PATH : ${lib.makeBinPath extraPackages} \
-        --set NVIM_APPNAME nvim-linus
-    '';
-  }
+in {
+  packages = [
+    pkgs.symlinkJoin
+    {
+      name = "nvim";
+      paths = [pkgs.neovim-unwrapped];
+      nativeBuildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/nvim \
+          --set VIMINIT "lua dofile('${configDir}/init.lua')" \
+          --add-flags '--cmd' \
+          --add-flags "'set runtimepath^=${configDir}'" \
+          --prefix PATH : ${lib.makeBinPath extraPackages} \
+          --set NVIM_APPNAME nvim-linus
+      '';
+    }
+    pkgs.symlinkJoin
+    {
+      name = "devnvim";
+      paths = [pkgs.neovim-unwrapped];
+      nativeBuildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/nvim \
+          --set VIMINIT "lua dofile('~/Projects/neovim/init.lua')" \
+          --add-flags '--cmd' \
+          --add-flags "'set runtimepath^=~/Projects/neovim'" \
+          --prefix PATH : ${lib.makeBinPath extraPackages} \
+          --set NVIM_APPNAME nvim-linus
+      '';
+    }
+  ];
+}
