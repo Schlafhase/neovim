@@ -43,7 +43,7 @@
     black
     python312Packages.debugpy
 
-    vscode-langservers-extracted.eslint
+    eslint
     vscode-langservers-extracted.csslint
     vscode-langservers-extracted.html
   ];
