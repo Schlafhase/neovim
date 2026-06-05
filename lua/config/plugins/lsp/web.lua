@@ -9,11 +9,14 @@ Autocmd("FileType", {
 return {
 	{
 		"cssls",
-    lsp = {}
-  },{
+		lsp = {},
+	},
+	{
 		"eslint",
-    lsp = {}
-  },{
-		"html",lsp = {}},
+		lsp = {},
+	},
+	{
+		"html",
+		lsp = {},
 	},
 }
