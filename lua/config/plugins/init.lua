@@ -44,4 +44,5 @@ return {
 	{ import = MP:relpath("refactoring") },
 	{ import = MP:relpath("otter") },
 	{ import = MP:relpath("wakatime") },
+	{ import = MP:relpath("luasnip") },
 }

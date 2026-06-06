@@ -63,8 +63,13 @@ vim.pack.add({
 	gh("jmbuhr/otter.nvim"),
 	gh("wakatime/vim-wakatime"),
 	gh("windwp/nvim-ts-autotag"),
+	gh("L3MON4D3/LuaSnip"),
+	gh("soifou/blink_luasnip"),
+	gh("ionide/Ionide-vim"),
 }, { load = function() end, confirm = false })
 -- Loading is handled by lze
+--
+--
 
 if vim.g.vscode == nil then
 	require("config")

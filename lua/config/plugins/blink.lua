@@ -90,7 +90,7 @@ return {
 					},
 				},
 				sources = {
-					default = { "lsp", "path", "buffer", "omni" },
+					default = { "lsp", "path", "snippets", "buffer", "omni" },
 					providers = {
 						path = {
 							score_offset = 50,
@@ -107,6 +107,9 @@ return {
 							},
 						},
 					},
+				},
+				snippets = {
+					preset = "luasnip",
 				},
 			})
 			Autocmd("CmdlineLeave", {

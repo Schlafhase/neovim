@@ -94,25 +94,25 @@ return {
 								hide = { "<C-/>", "hide", desc = "Hide Terminal", mode = "t" },
 
 								resize_left = {
-									"<C-S-H",
+									"<C-Left>",
 									resize("left"),
 									desc = "Resize Window left",
 									mode = "t",
 								},
 								resize_up = {
-									"<C-S-K>",
+									"<C-Up>",
 									resize("up"),
 									desc = "Resize Window up",
 									mode = "t",
 								},
 								resize_down = {
-									"<C-S-J>",
+									"<C-Down>",
 									resize("down"),
 									desc = "Resize Window down",
 									mode = "t",
 								},
 								resize_right = {
-									"<C-S-L>",
+									"<C-Right>",
 									resize("right"),
 									desc = "Resize Window right",
 									mode = "t",
