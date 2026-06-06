@@ -126,4 +126,9 @@ return {
 		event = "BufReadPost",
 		setup = { mode = "topline" },
 	},
+	{
+		"nvim-ts-autotag",
+		event = "BufReadPre",
+		setup = {},
+	},
 }

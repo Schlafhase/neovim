@@ -62,6 +62,7 @@ vim.pack.add({
 	gh("ThePrimeagen/refactoring.nvim"),
 	gh("jmbuhr/otter.nvim"),
 	gh("wakatime/vim-wakatime"),
+	gh("windwp/nvim-ts-autotag"),
 }, { load = function() end, confirm = false })
 -- Loading is handled by lze
 
