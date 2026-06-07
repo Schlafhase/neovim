@@ -46,7 +46,7 @@ Keymap({ "n", "i" }, "<M-CR>", function()
 end)
 Keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Open diagnostics list" })
 
-vim.o.clipboard = "unnamedplus"
+-- vim.o.clipboard = "unnamedplus"
 
 -- Keymap({ "v", "x", "n" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
 -- Keymap({ "n", "v", "x" }, "<leader>Y", '"+yy', { noremap = true, silent = true, desc = "Yank line to clipboard" })

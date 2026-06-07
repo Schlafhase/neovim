@@ -13,8 +13,10 @@ return {
 		end,
 	},
 	{
-		"eslint",
-		lsp = {},
+		"ts_ls",
+		lsp = {
+			-- cmd = { "vscode-eslint-language-server", "--stdio" },
+		},
 	},
 	{
 		"html",

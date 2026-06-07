@@ -19,6 +19,13 @@
       nugetHash = "sha256-MasiP8L7t/wvUX2azAqG9DxLezr2nNl2DA0ZUKbnPD8=";
       dotnet-sdk = pkgs.dotnet-sdk;
     })
+    (buildDotnetGlobalTool {
+      pname = "fsautocomplete";
+      nugetName = "fsautocomplete";
+      version = "0.83.0";
+      nugetHash = "sha256-5K93/XwKG+pgNW6UfW1OOgHv01Xh7xYnLB5v/AyhpUw";
+      dotnet-sdk = pkgs.dotnet-sdk;
+    })
 
     jdt-language-server
 
@@ -43,8 +50,8 @@
     black
     python312Packages.debugpy
 
-    eslint
     vscode-langservers-extracted
+    typescript-language-server
   ];
 
   configDir = pkgs.stdenv.mkDerivation {
