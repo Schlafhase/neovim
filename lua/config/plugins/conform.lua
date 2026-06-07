@@ -4,12 +4,14 @@ return {
 		event = "DeferredUIEnter",
 		after = function()
 			require("conform").setup({
-				format_after_save = {
-					timeout_ms = 500,
-					lsp_format = "fallback",
-					async = true,
-				},
+				format_after_save = function()
+					local conform_ignore = require("config.custom.conform_ignore")
+					conform_ignore.conform_format_ignorable(0)
+				end,
 				formatters = {
+					injected = {
+						ignore_erros = true,
+					},
 					mdformat = {
 						command = "mdformat",
 						append_args = { "--wrap", "75" },
@@ -27,11 +29,12 @@ return {
 					},
 				},
 				formatters_by_ft = {
-					lua = { "stylua" },
-					cs = { "csharpier" },
+					lua = { "stylua", "injected" },
+					cs = { "csharpier", "injected" },
 					nix = { "alejandra" },
-					markdown = { "prettiermd" },
-					javascript = { "prettier" },
+					markdown = { "prettiermd", "injected" },
+					html = { lsp_format = "first" },
+					javascript = { lsp_format = "first" },
 					python = { "black" },
 				},
 			})

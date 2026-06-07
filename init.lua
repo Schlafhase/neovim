@@ -66,6 +66,7 @@ vim.pack.add({
 	gh("L3MON4D3/LuaSnip"),
 	gh("soifou/blink_luasnip"),
 	gh("ionide/Ionide-vim"),
+	gh("onsails/lspkind.nvim"),
 }, { load = function() end, confirm = false })
 -- Loading is handled by lze
 --

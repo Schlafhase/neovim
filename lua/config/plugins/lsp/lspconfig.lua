@@ -5,7 +5,12 @@ return {
 		-- and it will run for all specs with type(plugin.lsp) == table
 		-- when their filetype trigger loads them
 		lsp = function(plugin)
-			vim.lsp.config(plugin.name, plugin.lsp or {})
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
+			--- @type vim.lsp.Config
+			local config = plugin.lsp or {}
+			config.capabilities = capabilities
+
+			vim.lsp.config(plugin.name, config)
 			vim.lsp.enable(plugin.name)
 		end,
 		-- set up our on_attach function once before the spec loads

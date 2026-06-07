@@ -13,17 +13,16 @@ return {
 	},
 	{
 		"blink.cmp",
-		event = { "InsertEnter", "CmdlineEnter" },
+		dep_of = { "nvim-lspconfig" },
 		after = function(_)
 			require("blink.cmp").setup({
-				-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-				-- See :h blink-cmp-config-keymap for configuring keymaps
 				keymap = {
 					preset = "none",
 					-- ["<C-y>"] = { "select_and_accept" },
 					["<Tab>"] = { "select_next", "fallback" },
 					["<S-Tab>"] = { "select_prev", "fallback" },
 					["<CR>"] = { "select_and_accept", "fallback" },
+					["<C-Space>"] = { "show", "hide" },
 				},
 				cmdline = {
 					enabled = true,
@@ -70,9 +69,21 @@ return {
 					accept = {
 						auto_brackets = { enabled = true },
 					},
+					list = {
+						selection = {
+							auto_insert = false,
+						},
+					},
+					ghost_text = {
+						enabled = true,
+					},
 					menu = {
 						draw = {
 							treesitter = { "lsp" },
+							columns = {
+								{ "label", "label_description", gap = 1 },
+								{ "kind_icon", "kind", gap = 1 },
+							},
 							components = {
 								label = {
 									text = function(ctx)
@@ -81,6 +92,9 @@ return {
 									highlight = function(ctx)
 										return require("colorful-menu").blink_components_highlight(ctx)
 									end,
+								},
+								label_description = {
+									highlight = "CustomBlinkLabelDescription",
 								},
 							},
 						},

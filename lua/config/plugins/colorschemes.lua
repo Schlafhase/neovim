@@ -20,6 +20,7 @@ return {
 
 					vim.api.nvim_set_hl(0, "BreakpointLine", { bg = palette.grey11 })
 					vim.api.nvim_set_hl(0, "BreakpointNumber", { fg = palette.red })
+					vim.api.nvim_set_hl(0, "CustomBlinkLabelDescription", { fg = "#888888", italic = true })
 				end,
 			})
 		end,
