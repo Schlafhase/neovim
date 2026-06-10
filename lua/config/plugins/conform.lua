@@ -36,6 +36,7 @@ return {
 					html = { lsp_format = "first" },
 					javascript = { lsp_format = "first" },
 					python = { "black" },
+					go = { lsp_format = "first" },
 				},
 			})
 		end,
