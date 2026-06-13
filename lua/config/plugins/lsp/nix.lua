@@ -1,6 +1,7 @@
 return {
 	{
 		"nixd",
+		enabled = false,
 		lsp = {
 			filetypes = { "nix" },
 			settings = {
@@ -20,5 +21,9 @@ return {
 				},
 			},
 		},
+	},
+	{
+		"nil_ls",
+		lsp = {},
 	},
 }

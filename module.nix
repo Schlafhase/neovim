@@ -31,6 +31,7 @@
 
     alejandra
     nixd
+    nil
 
     lua-language-server
     stylua
