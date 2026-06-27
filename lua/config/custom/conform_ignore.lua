@@ -72,6 +72,40 @@ local conform = require("conform")
 -- 	end
 -- end
 
+local function reload_buffer_preserve_view(bufnr)
+	if bufnr ~= 0 then
+		vim.api.nvim_buf_call(bufnr, function()
+			vim.cmd("silent! edit!")
+		end)
+		return
+	end
+
+	vim.api.nvim_win_call(0, function()
+		local view = vim.fn.winsaveview()
+
+		vim.cmd("silent! edit!")
+
+		vim.fn.winrestview(view)
+	end)
+end
+
+local function write_buffer(bufnr)
+	if not vim.api.nvim_buf_is_loaded(bufnr) then
+		return
+	end
+
+	local name = vim.api.nvim_buf_get_name(bufnr)
+	if name == "" then
+		return
+	end
+
+	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+
+	vim.fn.writefile(lines, name)
+
+	reload_buffer_preserve_view(bufnr)
+end
+
 local function conform_should_format(bufnr)
 	local ok, parser = pcall(vim.treesitter.get_parser, bufnr)
 	if not ok or not parser then
@@ -106,8 +140,8 @@ end
 
 function M.conform_format_ignorable(bufnr)
 	if conform_should_format(bufnr) then
-		conform.format({ bufnr = bufnr, async = true }, function()
-			vim.cmd("noautocmd w")
+		conform.format({ bufnr = bufnr, async = false }, function()
+			write_buffer(bufnr)
 		end)
 	end
 end

@@ -58,8 +58,10 @@ vim.wo.relativenumber = true
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
--- Set completeopt to have a better completion experience
+-- Set completeopt to have a better completion experience colour
 vim.o.completeopt = "menu,preview"
 
--- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+-- Spelling
+vim.o.spelllang = "en_gb,de,cjk"

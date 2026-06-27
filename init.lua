@@ -7,6 +7,11 @@ vim.pack.add({
 	gh("BirdeeHub/lzextras"),
 })
 
+local active_plugins = {
+	lze = true,
+	lzextras = true,
+}
+
 vim.pack.add({
 	gh("nvim-lua/plenary.nvim"),
 	gh("MunifTanjim/nui.nvim"),
@@ -67,10 +72,33 @@ vim.pack.add({
 	gh("soifou/blink_luasnip"),
 	gh("ionide/Ionide-vim"),
 	gh("onsails/lspkind.nvim"),
-}, { load = function() end, confirm = false })
+}, {
+	load = function(p)
+		active_plugins[p.spec.name] = true
+	end,
+	confirm = false,
+})
 -- Loading is handled by lze
---
---
+
+vim.pack.remove_inactive = function()
+	local unused_plugins = {}
+
+	for _, plugin in ipairs(vim.pack.get()) do
+		if not active_plugins[plugin.spec.name] then
+			table.insert(unused_plugins, plugin.spec.name)
+		end
+	end
+
+	if #unused_plugins == 0 then
+		return
+	end
+
+	vim.notify("Unused plugins: " .. vim.inspect(unused_plugins))
+	local choice = vim.fn.confirm("Remove unused plugins?", "&Yes\n&No", 2)
+	if choice == 1 then
+		vim.pack.del(unused_plugins)
+	end
+end
 
 if vim.g.vscode == nil then
 	require("config")

@@ -67,6 +67,7 @@ Keymap(
 Keymap("n", "<leader>n", "<cmd>Telescope notify<CR>", { desc = "Show Notifications" })
 
 Keymap("n", "<leader>pu", vim.pack.update, { desc = "Update all plugins" })
+Keymap("n", "<leader>pc", vim.pack.remove_inactive, { desc = "Remove unused plugins" })
 
 local ml = require("config.custom.moveline")
 
