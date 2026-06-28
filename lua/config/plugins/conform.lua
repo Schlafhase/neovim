@@ -27,6 +27,13 @@ return {
 							"$FILENAME",
 						},
 					},
+					prettierhtml = {
+						command = "prettier",
+						args = {
+							"--parser",
+							"html",
+						},
+					},
 				},
 				formatters_by_ft = {
 					lua = { "stylua", "injected" },
@@ -34,6 +41,7 @@ return {
 					nix = { "alejandra" },
 					markdown = { "prettiermd", "injected" },
 					html = { lsp_format = "first" },
+					xml = { "prettierhtml" },
 					javascript = { lsp_format = "first" },
 					python = { "black" },
 					go = { lsp_format = "first" },
