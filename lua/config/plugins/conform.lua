@@ -42,10 +42,11 @@ return {
 					markdown = { "prettiermd", "injected" },
 					html = { lsp_format = "first" },
 					xml = { "prettierhtml" },
-					javascript = { lsp_format = "first" },
 					python = { "black" },
 					go = { lsp_format = "first" },
 					typescriptreact = { "prettier" },
+					typescript = { "prettier" },
+					javascript = { "prettier" },
 					css = { "prettier" },
 				},
 			})
