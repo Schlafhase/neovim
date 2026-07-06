@@ -45,6 +45,8 @@ return {
 					javascript = { lsp_format = "first" },
 					python = { "black" },
 					go = { lsp_format = "first" },
+					typescriptreact = { "prettier" },
+					css = { "prettier" },
 				},
 			})
 		end,
