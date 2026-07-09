@@ -72,6 +72,7 @@ vim.pack.add({
 	gh("soifou/blink_luasnip"),
 	gh("ionide/Ionide-vim"),
 	gh("onsails/lspkind.nvim"),
+	gh("johnseth97/codex.nvim"),
 }, {
 	load = function(p)
 		active_plugins[p.spec.name] = true

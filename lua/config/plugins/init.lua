@@ -46,4 +46,5 @@ return {
 	{ import = MP:relpath("wakatime") },
 	{ import = MP:relpath("luasnip") },
 	{ import = MP:relpath("lspkind") },
+	{ import = MP:relpath("codex") },
 }
