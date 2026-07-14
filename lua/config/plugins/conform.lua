@@ -4,9 +4,9 @@ return {
 		event = "DeferredUIEnter",
 		after = function()
 			require("conform").setup({
-				format_after_save = function()
+				format_after_save = function(bufnr)
 					local conform_ignore = require("config.custom.conform_ignore")
-					conform_ignore.conform_format_ignorable(0)
+					  conform_ignore.conform_format_ignorable(bufnr)
 				end,
 				formatters = {
 					injected = {
