@@ -12,12 +12,14 @@ return {
 			local startup_time = vim.fn.reltime(vim.g.start_time or vim.fn.reltime())
 			local startup_ms = math.floor(vim.fn.reltimefloat(startup_time) * 1000)
 
+      local cw = require("config.custom.changewindow")
+
 			local function term_nav(dir)
 				---@param self snacks.terminal
 				return function(self)
 					return self:is_floating() and "<c-" .. dir .. ">"
 						or vim.schedule(function()
-							vim.cmd.wincmd(dir)
+              cw.changeWindow(dir)
 						end)
 				end
 			end

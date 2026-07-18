@@ -5,10 +5,20 @@ Keymap = vim.keymap.set
 -- Keymaps for better default experience
 -- See `:help Keymap()`
 
-Keymap({ "n", "t", "v", "i" }, "<C-h>", "<C-W>h", { desc = "Go to left window" })
-Keymap({ "n", "t", "v", "i" }, "<C-j>", "<C-W>j", { desc = "Go to bottom window" })
-Keymap({ "n", "t", "v", "i" }, "<C-k>", "<C-W>k", { desc = "Go to top window" })
-Keymap({ "n", "t", "v", "i" }, "<C-l>", "<C-W>l", { desc = "Go to right window" })
+local cw = require("config.custom.changewindow")
+
+Keymap({ "n", "t", "v", "i" }, "<C-h>", function ()
+  cw.changeWindow("h")
+end, { desc = "Go to left window" })
+Keymap({ "n", "t", "v", "i" }, "<C-j>", function ()
+  cw.changeWindow("j")
+end, { desc = "Go to bottom window" })
+Keymap({ "n", "t", "v", "i" }, "<C-k>", function ()
+  cw.changeWindow("k")
+end, { desc = "Go to top window" })
+Keymap({ "n", "t", "v", "i" }, "<C-l>", function ()
+  cw.changeWindow("l")
+end, { desc = "Go to right window" })
 Keymap({ "n" }, "<leader>qq", "<cmd>qa<CR>", { desc = "Quit All" })
 
 -- Keymap("i", "<M-j>", "<Esc><Cmd>m .+1<CR>==gi", { desc = "Moves Line Down" })
