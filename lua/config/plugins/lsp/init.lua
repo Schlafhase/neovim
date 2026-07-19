@@ -10,4 +10,5 @@ return {
 	{ import = MP:relpath("python") },
 	{ import = MP:relpath("java") },
 	{ import = MP:relpath("web") },
+	{ import = MP:relpath("c") },
 }

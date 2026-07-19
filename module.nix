@@ -6,6 +6,9 @@
   extraPackages = with pkgs; [
     tree-sitter
 
+    ccls
+    gdb
+
     roslyn-ls
     dotnetCorePackages.sdk_10_0
     dotnet-ef
