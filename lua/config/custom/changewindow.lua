@@ -1,9 +1,17 @@
 local M = {}
 
+---@param dir string
 function M.changeWindow(dir)
-	local cur = vim.api.nvim_get_current_win()
-	vim.cmd.wincmd(dir)
-	local moved = vim.api.nvim_get_current_win() ~= cur
+	local moved
+
+	if dir:find("explorer") then
+		dir = dir:sub(1, 1)
+		moved = false
+	else
+		local cur = vim.api.nvim_get_current_win()
+		vim.cmd.wincmd(dir)
+		moved = vim.api.nvim_get_current_win() ~= cur
+	end
 
 	if moved then
 		return

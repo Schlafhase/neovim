@@ -12,14 +12,14 @@ return {
 			local startup_time = vim.fn.reltime(vim.g.start_time or vim.fn.reltime())
 			local startup_ms = math.floor(vim.fn.reltimefloat(startup_time) * 1000)
 
-      local cw = require("config.custom.changewindow")
+			local cw = require("config.custom.changewindow")
 
 			local function term_nav(dir)
 				---@param self snacks.terminal
 				return function(self)
 					return self:is_floating() and "<c-" .. dir .. ">"
 						or vim.schedule(function()
-              cw.changeWindow(dir)
+							cw.changeWindow(dir)
 						end)
 				end
 			end
@@ -53,6 +53,40 @@ return {
 						{
 							replace_netrw = true,
 							trash = false,
+							win = {
+								list = {
+									keys = {
+										nav_h = {
+											"<C-h>",
+											term_nav("h"),
+											desc = "Go to Left Window",
+											expr = true,
+											mode = "t",
+										},
+										nav_j = {
+											"<C-j>",
+											term_nav("j"),
+											desc = "Go to Lower Window",
+											expr = true,
+											mode = "t",
+										},
+										nav_k = {
+											"<C-k>",
+											term_nav("k"),
+											desc = "Go to Upper Window",
+											expr = true,
+											mode = "t",
+										},
+										nav_l = {
+											"<C-l>",
+											term_nav("l"),
+											desc = "Go to Right Window",
+											expr = true,
+											mode = "t",
+										},
+									},
+								},
+							},
 						},
 					picker = {
 						win = {
@@ -69,11 +103,24 @@ return {
 							explorer = {
 								auto_close = false,
 								win = {
+									input = {
+										show = false,
+									},
 									list = {
 										keys = {
 											["<Esc>"] = false,
 											["<Tab>"] = false,
 											["<S-Tab>"] = false,
+											["i"] = false,
+											["<C-h>"] = function()
+												cw.changeWindow("hexplorer")
+											end,
+											["<C-j>"] = function()
+												cw.changeWindow("jexplorer")
+											end,
+											["<C-k>"] = function()
+												cw.changeWindow("kexplorer")
+											end,
 											["V"] = { "select_and_prev", mode = { "n" } },
 											["v"] = { "select_and_next", mode = { "n" } },
 										},
