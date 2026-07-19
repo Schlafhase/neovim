@@ -24,7 +24,9 @@ function M.changeWindow(dir)
 		direction = "r"
 	end
 
-	vim.system({ "hyprctl", "dispatch", "hl.dsp.focus({direction='" .. direction .. "'})" })
+	pcall(function()
+		vim.system({ "hyprctl", "dispatch", "hl.dsp.focus({direction='" .. direction .. "'})" })
+	end)
 end
 
 return M
