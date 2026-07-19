@@ -48,6 +48,8 @@ return {
 					typescript = { "prettier" },
 					javascript = { "prettier" },
 					css = { "prettier" },
+          c = { "clang-format" },
+          cpp = { "clang-format" },
 				},
 			})
 		end,

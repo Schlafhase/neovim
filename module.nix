@@ -8,6 +8,7 @@
 
     ccls
     gdb
+    emacsPackages.clang-format
 
     roslyn-ls
     dotnetCorePackages.sdk_10_0

@@ -73,7 +73,7 @@ vim.pack.add({
 	gh("ionide/Ionide-vim"),
 	gh("onsails/lspkind.nvim"),
 	gh("johnseth97/codex.nvim"),
-  gh("fei6409/log-highlight.nvim")
+  gh("fei6409/log-highlight.nvim"),
 }, {
 	load = function(p)
 		active_plugins[p.spec.name] = true
