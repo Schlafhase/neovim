@@ -1,8 +1,8 @@
 return {
 	{
-		"ccls",
+		"clangd",
 		lsp = {
-			cmd = { "ccls" },
+			cmd = { "clangd" },
 			filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 		},
 	},

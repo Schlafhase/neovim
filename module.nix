@@ -6,7 +6,7 @@
   extraPackages = with pkgs; [
     tree-sitter
 
-    ccls
+    clangd
     gdb
     emacsPackages.clang-format
 
