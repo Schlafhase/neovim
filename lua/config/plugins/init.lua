@@ -48,5 +48,4 @@ return {
 	{ import = MP:relpath("lspkind") },
 	{ import = MP:relpath("codex") },
   { import = MP:relpath("log-highlight")},
-  { import = MP:relpath("godot")},
 }
