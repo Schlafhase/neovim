@@ -47,5 +47,5 @@ return {
 	{ import = MP:relpath("luasnip") },
 	{ import = MP:relpath("lspkind") },
 	{ import = MP:relpath("codex") },
-  { import = MP:relpath("log-highlight")}
+  { import = MP:relpath("log-highlight")},
 }

@@ -15,6 +15,7 @@
     dotnet-ef
     netcoredbg
     csharpier
+    csharp-ls
     (writeShellScriptBin "roslyn" "Microsoft.CodeAnalysis.LanguageServer")
     (buildDotnetGlobalTool {
       pname = "dotnet-easydotnet";
@@ -49,7 +50,7 @@
 
     (python3.withPackages (python-pkgs: [
       python-pkgs.numpy
-      python-pkgs.debugpy
+      # python-pkgs.debugpy # borken
     ]))
     pyright
     black

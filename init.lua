@@ -74,6 +74,7 @@ vim.pack.add({
 	gh("onsails/lspkind.nvim"),
 	gh("johnseth97/codex.nvim"),
   gh("fei6409/log-highlight.nvim"),
+  gh("Mathijs-Bakker/godotdev.nvim")
 }, {
 	load = function(p)
 		active_plugins[p.spec.name] = true
