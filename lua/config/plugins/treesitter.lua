@@ -24,7 +24,7 @@ return {
 					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 				end
 
-				if language == "nix" then
+				if language == "nix" or language == "cpp" or language == "c" then
 					vim.bo.indentexpr = "" -- treesitter indent for nix is horrible
 				end
 
