@@ -58,3 +58,29 @@ Autocmd("User", {
 		vim.cmd.cd(ev.data.root)
 	end,
 })
+
+local imUpdateGroup = Augroup("update-im")
+local imUpdate = require("config.custom.change-fcitx5-im")
+
+Autocmd("FocusLost", {
+	group = imUpdateGroup,
+	callback = function()
+		imUpdate.changeIM("unixkey")
+	end,
+})
+
+Autocmd("QuitPre", {
+	group = imUpdateGroup,
+	callback = function ()
+	imUpdate.changeIM("unixkey")end,
+})
+
+Autocmd("FocusGained", {
+	group = imUpdateGroup,
+	callback = imUpdate.useCorrectIM,
+})
+
+Autocmd("ModeChanged", {
+	group = imUpdateGroup,
+	callback = imUpdate.useCorrectIM,
+})

@@ -61,10 +61,6 @@ vim.pack.add({
 	gh("mfussenegger/nvim-dap-python"),
 	gh("selimacerbas/markdown-preview.nvim"),
 	gh("selimacerbas/live-server.nvim"),
-	{ src = gh("JavaHello/spring-boot.nvim"), version = "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0" },
-	gh("nvim-java/nvim-java"),
-	gh("lewis6991/async.nvim"),
-	gh("ThePrimeagen/refactoring.nvim"),
 	gh("jmbuhr/otter.nvim"),
 	gh("wakatime/vim-wakatime"),
 	gh("windwp/nvim-ts-autotag"),
@@ -73,8 +69,8 @@ vim.pack.add({
 	gh("ionide/Ionide-vim"),
 	gh("onsails/lspkind.nvim"),
 	gh("johnseth97/codex.nvim"),
-  gh("fei6409/log-highlight.nvim"),
-  gh("Mathijs-Bakker/godotdev.nvim")
+	gh("fei6409/log-highlight.nvim"),
+	gh("Mathijs-Bakker/godotdev.nvim"),
 }, {
 	load = function(p)
 		active_plugins[p.spec.name] = true
