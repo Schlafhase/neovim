@@ -42,6 +42,8 @@ vim.o.softtabstop = 2
 
 -- stops line wrapping from being confusing
 vim.o.breakindent = true
+vim.o.wrap = true
+vim.o.linebreak = true
 
 -- Save undo history
 vim.o.undofile = true

@@ -71,8 +71,9 @@ Autocmd("FocusLost", {
 
 Autocmd("QuitPre", {
 	group = imUpdateGroup,
-	callback = function ()
-	imUpdate.changeIM("unixkey")end,
+	callback = function()
+		imUpdate.changeIM("unixkey")
+	end,
 })
 
 Autocmd("FocusGained", {
@@ -84,3 +85,4 @@ Autocmd("ModeChanged", {
 	group = imUpdateGroup,
 	callback = imUpdate.useCorrectIM,
 })
+
