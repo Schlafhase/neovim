@@ -8,7 +8,10 @@ M.changeIM = function(name)
 		vim.notify("Failed to set fcitx5 input method. Is fcitx5-remote installed?")
 	end
 end
-M.useCorrectIM = function()
+
+local locked = false
+local updateScheduled = false
+local useCorrectIM = function()
 	local mode = vim.api.nvim_get_mode().mode
 	if mode == "i" or mode == "c" or mode == "t" then
 		M.changeIM(insertIM)
@@ -16,5 +19,26 @@ M.useCorrectIM = function()
 		M.changeIM(normalIM)
 	end
 end
+
+M.useCorrectIM = function()
+	if locked then
+		if updateScheduled then
+			updateScheduled = true
+			vim.schedule(function()
+				useCorrectIM()
+				updateScheduled = false
+			end)
+		end
+		return
+	end
+
+	useCorrectIM()
+	locked = true
+	vim.schedule(function()
+		locked = false
+	end)
+end
+
+M.forceUseCorrectIM = useCorrectIM
 
 return M

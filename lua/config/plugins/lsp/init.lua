@@ -11,4 +11,5 @@ return {
 	{ import = MP:relpath("java") },
 	{ import = MP:relpath("web") },
 	{ import = MP:relpath("c") },
+	{ import = MP:relpath("musubi") },
 }

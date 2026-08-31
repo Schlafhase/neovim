@@ -30,7 +30,18 @@ return {
 
 				return true
 			end
-
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "TSUpdate",
+				callback = function()
+					require("nvim-treesitter.parsers").musubi = {
+						install_info = {
+							path = "/home/Linus/Projects/cs/Musubi/Musubi.Treesitter",
+							queries = "queries",
+						},
+					}
+					vim.treesitter.language.register("musubi", { "musubi", "musubi-module" })
+				end,
+			})
 			local installable_parsers = require("nvim-treesitter").get_available()
 			vim.api.nvim_create_autocmd("FileType", {
 				callback = function(args)
@@ -38,6 +49,10 @@ return {
 					local language = vim.treesitter.language.get_lang(filetype)
 					if not language then
 						return
+					end
+
+					if language == "markdown" then
+						vim.bo.textwidth = 80
 					end
 
 					if not treesitter_try_attach(buf, language) then
