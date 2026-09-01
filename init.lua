@@ -44,7 +44,7 @@ vim.pack.add({
 	gh("folke/trouble.nvim"),
 	gh("nvim-telescope/telescope.nvim"),
 	gh("rcarriga/nvim-notify"),
-	gh("OXY2DEV/markview.nvim"),
+	-- gh("OXY2DEV/markview.nvim"),
 	gh("folke/persistence.nvim"),
 	gh("windwp/nvim-autopairs"),
 	gh("folke/flash.nvim"),
