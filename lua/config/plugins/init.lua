@@ -19,7 +19,7 @@ return {
 	{ import = MP:relpath("trouble") },
 	{ import = MP:relpath("telescope") },
 	{ import = MP:relpath("nvim-notify") },
-	{ import = MP:relpath("markview") },
+	-- { import = MP:relpath("markview") },
 	{ import = MP:relpath("persistence") },
 	{ import = MP:relpath("rainbow-delimiters") },
 	{ import = MP:relpath("nvim-autopairs") },
