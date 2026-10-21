@@ -36,6 +36,7 @@ return {
 	{ import = MP:relpath("plenary") },
 	{ import = MP:relpath("nui") },
 	{ import = MP:relpath("markdown-preview") },
+	{ import = MP:relpath("typst-preview") },
 	{ import = MP:relpath("live-server") },
 	{ import = MP:relpath("otter") },
 	{ import = MP:relpath("wakatime") },
