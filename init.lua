@@ -71,7 +71,10 @@ vim.pack.add({
 	gh("johnseth97/codex.nvim"),
 	gh("fei6409/log-highlight.nvim"),
 	gh("Mathijs-Bakker/godotdev.nvim"),
-  gh("chomosuke/typst-preview.nvim")
+	gh("chomosuke/typst-preview.nvim"),
+	gh("nvim-neotest/nvim-nio"),
+	gh("nvim-neotest/neotest"),
+	gh("citizenharris/neotest-dotnet"),
 }, {
 	load = function(p)
 		active_plugins[p.spec.name] = true
