@@ -44,6 +44,7 @@ vim.pack.add({
 	gh("folke/trouble.nvim"),
 	gh("nvim-telescope/telescope.nvim"),
 	gh("rcarriga/nvim-notify"),
+	-- gh("OXY2DEV/markview.nvim"),
 	gh("folke/persistence.nvim"),
 	gh("windwp/nvim-autopairs"),
 	gh("folke/flash.nvim"),
@@ -70,6 +71,10 @@ vim.pack.add({
 	gh("johnseth97/codex.nvim"),
 	gh("fei6409/log-highlight.nvim"),
 	gh("Mathijs-Bakker/godotdev.nvim"),
+	gh("chomosuke/typst-preview.nvim"),
+	gh("nvim-neotest/nvim-nio"),
+	gh("nvim-neotest/neotest"),
+	gh("citizenharris/neotest-dotnet"),
 }, {
 	load = function(p)
 		active_plugins[p.spec.name] = true

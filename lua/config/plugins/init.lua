@@ -19,6 +19,7 @@ return {
 	{ import = MP:relpath("trouble") },
 	{ import = MP:relpath("telescope") },
 	{ import = MP:relpath("nvim-notify") },
+	-- { import = MP:relpath("markview") },
 	{ import = MP:relpath("persistence") },
 	{ import = MP:relpath("rainbow-delimiters") },
 	{ import = MP:relpath("nvim-autopairs") },
@@ -35,6 +36,7 @@ return {
 	{ import = MP:relpath("plenary") },
 	{ import = MP:relpath("nui") },
 	{ import = MP:relpath("markdown-preview") },
+	{ import = MP:relpath("typst-preview") },
 	{ import = MP:relpath("live-server") },
 	{ import = MP:relpath("otter") },
 	{ import = MP:relpath("wakatime") },
@@ -42,4 +44,6 @@ return {
 	{ import = MP:relpath("lspkind") },
 	{ import = MP:relpath("codex") },
 	{ import = MP:relpath("log-highlight") },
+	{ import = MP:relpath("nvim-nio") },
+	{ import = MP:relpath("neotest") },
 }
